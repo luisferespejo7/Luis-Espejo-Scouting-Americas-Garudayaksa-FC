@@ -1337,9 +1337,97 @@ const avgAgeLeague = [
   { name: 'Malaysian SL', age: 25.9 },
 ];
 
-const firstTeamPlayers = [];
+const firstTeamPlayers = [
+  {
+        nat: '🇧🇷', name: 'Maicon Souza', pos: 'CM', club: 'Borneo FC', age: 26,
+        height: '1.78m', fee: '€25k', salary: '$2,000/mo', contract: 'Expires Dec 2025',
+        attrs: [
+          { name: 'Pass Accuracy', val: 84, color: '#C8102E' },
+          { name: 'Defensive Duels', val: 71, color: '#E63946' },
+          { name: 'Key Passes / 90', val: 78, color: '#27AE60' },
+          { name: 'Pressing Intensity', val: 80, color: '#D4AC0D' }
+              ],
+        note: 'High motor box-to-box CM. Strong in press-resistant scenarios, composed under pressure. Liga 1 Indonesia experience — adapts fast. Versatile: covers both DM and CM roles.',
+        agent: 'Represented by SportsMundi Brasil'
+  },
+  {
+        nat: '🇨🇴', name: 'Gabriel Poveda', pos: 'ST', club: 'Persija Jakarta', age: 27,
+        height: '1.83m', fee: 'Negotiable', salary: '$2,400/mo', contract: 'Free — available Jan 2026',
+        attrs: [
+          { name: 'Goals / 90', val: 79, color: '#C8102E' },
+          { name: 'Aerial Duels Won', val: 74, color: '#E63946' },
+          { name: 'Hold-up Play', val: 82, color: '#27AE60' },
+          { name: 'Off-ball Movement', val: 77, color: '#D4AC0D' }
+              ],
+        note: 'Physical Colombian striker with solid Liga 1 Indonesia record. Strong in the air, disciplined shape. Proven goal threat — fits target man role perfectly in Garudayaksa system.',
+        agent: 'Contact via Persija Jakarta admin office'
+  },
+  {
+        nat: '🇺🇾', name: 'Federico Alonso', pos: 'CB', club: 'Nacional (Uruguay)', age: 25,
+        height: '1.88m', fee: '€35k', salary: '$1,800/mo', contract: 'Expires Jun 2026',
+        attrs: [
+          { name: 'Aerial Duels Won', val: 86, color: '#3498DB' },
+          { name: 'Ball Recovery', val: 80, color: '#E63946' },
+          { name: 'Pass Completion %', val: 83, color: '#27AE60' },
+          { name: 'Long Ball Accuracy', val: 75, color: '#D4AC0D' }
+              ],
+        note: 'Commanding Uruguayan CB. Elite aerial presence matches Liga 1 physical demands. Right-footed — natural fit for left CB in back-4. Copa Sudamericana experience adds quality.',
+        agent: 'Via SudAmerica Futbol Agency'
+  },
+  {
+        nat: '🇦🇷', name: 'Lucas Rian', pos: 'WG', club: 'Arema FC', age: 23,
+        height: '1.74m', fee: '€20k', salary: '$1,600/mo', contract: 'Expires May 2026',
+        attrs: [
+          { name: 'Dribble Success %', val: 73, color: '#C8102E' },
+          { name: 'Crosses Completed', val: 68, color: '#E07B39' },
+          { name: 'Sprint Speed', val: 88, color: '#27AE60' },
+          { name: 'Shot on Target %', val: 71, color: '#D4AC0D' }
+              ],
+        note: 'Explosive winger with sharp acceleration. Already Liga 1 acclimatised — minimal adaptation lag. Capable of playing both flanks. Ceiling still untouched at 23.',
+        agent: 'Tribunnews (Dec 2025) — direct contact possible'
+  }
+  
+];
 
-const youngPlayers = [];
+const youngPlayers = [
+  {
+        nat: '🇧🇷', name: 'Joel Vinicius', pos: 'SS', club: 'Borneo FC', age: 22,
+        height: '1.76m', fee: '€30k', salary: '$1,900/mo', contract: 'Expires Jun 2026',
+        attrs: [
+          { name: 'Goals / 90', val: 76, color: '#C8102E' },
+          { name: 'Dribble Success', val: 80, color: '#27AE60' },
+          { name: 'Press Resistance', val: 72, color: '#E07B39' },
+          { name: 'Chance Creation', val: 78, color: '#3498DB' }
+              ],
+        note: 'Dynamic Brazilian No.10 — Liga 1 Indonesia proven. Combines creative flair with direct running. At 22, still developing ceiling. Ideal depth/rotation buy before Europe notices.',
+        agent: 'ANTARA (Jul 2025) — contact available'
+  },
+  {
+        nat: '🇻🇪', name: 'Daniel Hernandez', pos: 'AM', club: 'Deportivo La Guaira (VEN)', age: 21,
+        height: '1.73m', fee: '€15k', salary: '$1,200/mo', contract: 'Expires Dec 2025',
+        attrs: [
+          { name: 'Through Balls', val: 82, color: '#C8102E' },
+          { name: 'Dribbles / 90', val: 77, color: '#27AE60' },
+          { name: 'Pass Vision', val: 85, color: '#3498DB' },
+          { name: 'High Press Wins', val: 65, color: '#D4AC0D' }
+              ],
+        note: 'Venezuelan playmaker — technically gifted, creative in tight spaces. Liga Futve second division background but consistently outperforms level. Needs Liga 1 step to unlock real potential.',
+        agent: 'Via Venezuela Futbol Exports'
+  },
+  {
+        nat: '🇨🇴', name: 'Santiago Murillo', pos: 'WG', club: 'Atletico Huila (COL)', age: 20,
+        height: '1.71m', fee: '€12k', salary: '$1,100/mo', contract: 'Expires Jun 2026',
+        attrs: [
+          { name: 'Sprint Speed', val: 91, color: '#27AE60' },
+          { name: 'Dribble Success', val: 74, color: '#C8102E' },
+          { name: 'Cross Accuracy', val: 67, color: '#E07B39' },
+          { name: '1v1 Win Rate', val: 72, color: '#3498DB' }
+              ],
+        note: 'Raw Colombian winger with extraordinary pace — top speed above 35km/h. Inconsistent final ball but explosive impact off the bench. Perfect Garudayaksa development profile: young, cheap, high upside.',
+        agent: 'Athletica Sporting Group — Bogotá'
+  }
+  
+];
 
 // ─── RENDER FUNCTIONS ──────────────────────────────────────────────────
 
