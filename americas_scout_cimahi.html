@@ -1,0 +1,1655 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Americas Scout Intelligence — Garudayaksa FC</title>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@300;400;600;700;900&family=Barlow:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --red: #C8102E;
+    --red-dark: #8B0A1F;
+    --red-light: #E8253F;
+    --gold: #D4AC0D;
+    --gold-light: #F0C930;
+    --navy: #0A0F1E;
+    --navy-mid: #121828;
+    --navy-light: #1C2540;
+    --slate: #2C3555;
+    --white: #F8F9FA;
+    --grey: #8A93A8;
+    --grey-light: #C4CAD8;
+    --green: #27AE60;
+    --orange: #E67E22;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Barlow', sans-serif;
+    background: var(--navy);
+    color: var(--white);
+    min-height: 100vh;
+  }
+
+  /* HEADER */
+  .header {
+    background: linear-gradient(135deg, var(--red-dark) 0%, var(--red) 50%, #A00820 100%);
+    padding: 0;
+    position: relative;
+    overflow: hidden;
+  }
+  .header::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    right: -10%;
+    width: 500px; height: 500px;
+    background: radial-gradient(circle, rgba(255,255,255,0.06) 0%, transparent 70%);
+    border-radius: 50%;
+  }
+  .header-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 28px 48px;
+    position: relative;
+    z-index: 2;
+  }
+  .header-left {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+  }
+  .club-badge {
+    width: 72px; height: 72px;
+    background: rgba(255,255,255,0.15);
+    border: 2px solid rgba(255,255,255,0.3);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 28px;
+    backdrop-filter: blur(4px);
+  }
+  .header-title { line-height: 1.1; }
+  .header-title h1 {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 2.2rem;
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: #fff;
+  }
+  .header-title p {
+    font-size: 0.85rem;
+    color: rgba(255,255,255,0.7);
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    margin-top: 2px;
+  }
+  .header-meta {
+    text-align: right;
+  }
+  .header-meta .league-badge {
+    background: rgba(0,0,0,0.3);
+    border: 1px solid rgba(255,255,255,0.2);
+    padding: 6px 16px;
+    border-radius: 20px;
+    font-size: 0.78rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.9);
+    margin-bottom: 6px;
+    display: inline-block;
+  }
+  .header-meta .date {
+    font-size: 0.75rem;
+    color: rgba(255,255,255,0.5);
+    letter-spacing: 1px;
+  }
+  .header-tag {
+    background: var(--gold);
+    color: var(--navy);
+    padding: 4px 14px;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700;
+    font-size: 0.75rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    display: inline-block;
+    margin-top: 6px;
+  }
+
+  /* SECTION HEADER */
+  .section-label {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 24px;
+  }
+  .section-label .bar {
+    width: 4px;
+    height: 28px;
+    background: var(--red);
+    border-radius: 2px;
+  }
+  .section-label h2 {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 1.4rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: var(--white);
+  }
+  .section-label span {
+    font-size: 0.75rem;
+    color: var(--grey);
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-left: 4px;
+  }
+
+  /* NAV TABS */
+  .nav-tabs {
+    background: var(--navy-mid);
+    border-bottom: 1px solid var(--slate);
+    padding: 0 48px;
+    display: flex;
+    gap: 0;
+  }
+  .nav-tab {
+    padding: 16px 24px;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.95rem;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    cursor: pointer;
+    border-bottom: 3px solid transparent;
+    color: var(--grey);
+    transition: all 0.2s;
+    white-space: nowrap;
+    background: none;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    outline: none;
+  }
+  .nav-tab:hover { color: var(--white); }
+  .nav-tab.active {
+    color: var(--white);
+    border-bottom-color: var(--red);
+  }
+
+  /* CONTENT */
+  .content { padding: 40px 48px; }
+
+  .tab-panel { display: none; }
+  .tab-panel.active { display: block; }
+
+  /* STAT CARDS */
+  .stat-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 16px;
+    margin-bottom: 36px;
+  }
+  .stat-card {
+    background: var(--navy-mid);
+    border: 1px solid var(--slate);
+    border-top: 3px solid var(--red);
+    padding: 20px;
+    border-radius: 2px;
+    position: relative;
+    overflow: hidden;
+  }
+  .stat-card::after {
+    content: '';
+    position: absolute;
+    bottom: 0; right: 0;
+    width: 40px; height: 40px;
+    background: radial-gradient(circle, rgba(200,16,46,0.1) 0%, transparent 70%);
+  }
+  .stat-card .num {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 2.4rem;
+    font-weight: 900;
+    color: var(--white);
+    line-height: 1;
+  }
+  .stat-card .num span { color: var(--red); font-size: 1.4rem; }
+  .stat-card .label {
+    font-size: 0.72rem;
+    color: var(--grey);
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-top: 6px;
+  }
+  .stat-card .sublabel {
+    font-size: 0.8rem;
+    color: var(--grey-light);
+    margin-top: 4px;
+  }
+
+  /* CHARTS */
+  .chart-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+    margin-bottom: 32px;
+  }
+  .chart-grid-3 {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 24px;
+    margin-bottom: 32px;
+  }
+  .chart-box {
+    background: var(--navy-mid);
+    border: 1px solid var(--slate);
+    padding: 24px;
+    border-radius: 4px;
+  }
+  .chart-box h3 {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 1rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: var(--grey-light);
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .chart-box h3 .dot {
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    background: var(--red);
+  }
+
+  /* BAR CHART */
+  .bar-chart { display: flex; flex-direction: column; gap: 10px; }
+  .bar-row { display: flex; align-items: center; gap: 12px; }
+  .bar-label {
+    width: 110px;
+    font-size: 0.8rem;
+    color: var(--grey-light);
+    text-align: right;
+    flex-shrink: 0;
+  }
+  .bar-track {
+    flex: 1;
+    height: 24px;
+    background: var(--slate);
+    border-radius: 2px;
+    overflow: hidden;
+    position: relative;
+  }
+  .bar-fill {
+    height: 100%;
+    border-radius: 2px;
+    display: flex;
+    align-items: center;
+    padding: 0 8px;
+    transition: width 1s ease;
+    position: relative;
+  }
+  .bar-fill span {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: rgba(255,255,255,0.9);
+    white-space: nowrap;
+  }
+  .bar-count {
+    width: 36px;
+    text-align: right;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: var(--white);
+  }
+
+  /* DONUT */
+  .donut-wrap {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+  }
+  .donut-wrap canvas { flex-shrink: 0; }
+  .donut-legend { display: flex; flex-direction: column; gap: 8px; }
+  .legend-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.82rem;
+    color: var(--grey-light);
+  }
+  .legend-dot {
+    width: 10px; height: 10px;
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+  .legend-val {
+    margin-left: auto;
+    font-weight: 600;
+    color: var(--white);
+    min-width: 30px;
+    text-align: right;
+    padding-left: 12px;
+  }
+
+  /* TABLE */
+  .data-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.85rem;
+  }
+  .data-table th {
+    background: var(--navy-light);
+    color: var(--grey);
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.75rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    padding: 12px 16px;
+    text-align: left;
+    border-bottom: 1px solid var(--slate);
+    white-space: nowrap;
+  }
+  .data-table td {
+    padding: 11px 16px;
+    border-bottom: 1px solid rgba(44,53,85,0.5);
+    color: var(--grey-light);
+    vertical-align: middle;
+  }
+  .data-table tr:hover td { background: rgba(44,53,85,0.3); }
+  .data-table .player-name {
+    font-weight: 600;
+    color: var(--white);
+    font-size: 0.9rem;
+  }
+  .data-table .flag { font-size: 1.1rem; }
+  .pill {
+    display: inline-block;
+    padding: 2px 10px;
+    border-radius: 20px;
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+  }
+  .pill-green { background: rgba(39,174,96,0.2); color: #27AE60; border: 1px solid rgba(39,174,96,0.4); }
+  .pill-orange { background: rgba(230,126,34,0.2); color: #E67E22; border: 1px solid rgba(230,126,34,0.4); }
+  .pill-red { background: rgba(200,16,46,0.2); color: #E84060; border: 1px solid rgba(200,16,46,0.4); }
+  .pill-blue { background: rgba(52,152,219,0.2); color: #3498DB; border: 1px solid rgba(52,152,219,0.4); }
+  .pill-gold { background: rgba(212,172,13,0.2); color: #D4AC0D; border: 1px solid rgba(212,172,13,0.4); }
+
+  /* PLAYER CARDS */
+  .player-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
+    margin-bottom: 32px;
+  }
+  .player-card {
+    background: var(--navy-mid);
+    border: 1px solid var(--slate);
+    border-radius: 4px;
+    overflow: hidden;
+  }
+  .player-card-header {
+    background: linear-gradient(135deg, var(--red-dark), var(--red));
+    padding: 16px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+  }
+  .player-card-header .name {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 1.3rem;
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: #fff;
+  }
+  .player-card-header .pos-club {
+    font-size: 0.78rem;
+    color: rgba(255,255,255,0.75);
+    margin-top: 3px;
+  }
+  .player-card-body { padding: 20px; }
+  .player-meta {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    margin-bottom: 16px;
+  }
+  .meta-item .meta-label {
+    font-size: 0.68rem;
+    color: var(--grey);
+    letter-spacing: 2px;
+    text-transform: uppercase;
+  }
+  .meta-item .meta-val {
+    font-weight: 600;
+    color: var(--white);
+    font-size: 0.9rem;
+    margin-top: 2px;
+  }
+  .player-attrs { display: flex; flex-direction: column; gap: 8px; }
+  .attr-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 0.82rem;
+  }
+  .attr-label { width: 100px; color: var(--grey); flex-shrink: 0; }
+  .attr-bar {
+    flex: 1;
+    height: 6px;
+    background: var(--slate);
+    border-radius: 3px;
+    overflow: hidden;
+  }
+  .attr-fill {
+    height: 100%;
+    border-radius: 3px;
+  }
+  .attr-score { width: 30px; text-align: right; font-weight: 600; font-size: 0.82rem; color: var(--white); }
+  .player-notes {
+    margin-top: 16px;
+    padding: 12px;
+    background: rgba(10,15,30,0.5);
+    border-left: 3px solid var(--red);
+    font-size: 0.82rem;
+    color: var(--grey-light);
+    line-height: 1.5;
+  }
+  .player-costs {
+    display: flex;
+    gap: 16px;
+    margin-top: 14px;
+    flex-wrap: wrap;
+  }
+  .cost-item {
+    background: rgba(200,16,46,0.1);
+    border: 1px solid rgba(200,16,46,0.3);
+    padding: 6px 12px;
+    border-radius: 2px;
+  }
+  .cost-item .cost-label { font-size: 0.65rem; color: var(--grey); letter-spacing: 2px; text-transform: uppercase; }
+  .cost-item .cost-val { font-family: 'Barlow Condensed', sans-serif; font-size: 1rem; font-weight: 700; color: var(--gold-light); }
+
+  /* RADAR SVG */
+  .radar-box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  /* CONTEXT BOX */
+  .context-box {
+    background: var(--navy-mid);
+    border: 1px solid var(--slate);
+    border-left: 4px solid var(--gold);
+    padding: 20px 24px;
+    margin-bottom: 24px;
+    font-size: 0.88rem;
+    color: var(--grey-light);
+    line-height: 1.7;
+  }
+  .context-box strong { color: var(--white); }
+  .context-box .title {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 1rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: var(--gold);
+    margin-bottom: 8px;
+  }
+
+  /* INSIGHT GRID */
+  .insight-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    margin-bottom: 28px;
+  }
+  .insight-card {
+    background: var(--navy-mid);
+    border: 1px solid var(--slate);
+    padding: 18px;
+    border-radius: 4px;
+  }
+  .insight-card .i-flag { font-size: 1.6rem; margin-bottom: 8px; }
+  .insight-card .i-country {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 1rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--white);
+    margin-bottom: 8px;
+  }
+  .insight-card .i-points { list-style: none; }
+  .insight-card .i-points li {
+    font-size: 0.78rem;
+    color: var(--grey-light);
+    padding: 3px 0;
+    display: flex;
+    gap: 6px;
+  }
+  .insight-card .i-points li::before { content: '→'; color: var(--red); }
+
+  /* FOOTER */
+  .page-footer {
+    background: var(--navy-mid);
+    border-top: 1px solid var(--slate);
+    padding: 16px 48px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.75rem;
+    color: var(--grey);
+  }
+
+  canvas { display: block; }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<div class="header">
+  <div class="header-inner">
+    <div class="header-left">
+      <div class="club-badge">⚽</div>
+      <div class="header-title">
+        <h1>The Americas Scout Intelligence</h1>
+        <p>Garudayaksa FC · Liga 1 Indonesia · Recruitment Report</p>
+        <div class="header-tag">Scout: Luis Fernando Espejo</div>
+      </div>
+    </div>
+    <div class="header-meta">
+      <div class="league-badge">Liga 1 Indonesia · 2025/26</div>
+      <div class="date">May 2026 · Confidential</div>
+    </div>
+  </div>
+</div>
+
+<!-- NAV -->
+<div class="nav-tabs">
+  <button class="nav-tab active" onclick="switchTab('overview')">Market Overview</button>
+  <button class="nav-tab" onclick="switchTab('leagues')">By League / Country</button>
+  <button class="nav-tab" onclick="switchTab('age')">Age Analysis</button>
+  <button class="nav-tab" onclick="switchTab('proposals')">Player Proposals</button>
+  <button class="nav-tab" onclick="switchTab('process')">Scouting Process</button>
+  <button class="nav-tab" onclick="switchTab('methodology')">Methodology</button>
+</div>
+
+<!-- CONTENT -->
+<div class="content">
+
+  <!-- TAB 1: OVERVIEW -->
+  <div id="tab-overview" class="tab-panel active">
+
+    <div class="context-box">
+      <div class="title">Scout Context</div>
+      The Americas — spanning Brazil, Argentina, Colombia, Mexico, USA, Ecuador, Uruguay and beyond — represent an <strong>underexplored and underpriced talent pool</strong> for Asian and Oceanian leagues. 
+      Compared to European imports, Americas players offer strong physical profiles, adaptability, and competitive pricing. 
+      <strong>Liga 1 Indonesia (2025/26) now allows 11 foreign players per squad with 8 on the field simultaneously</strong>, creating a structural opportunity to sign Americas-based talent at Liga 1 level as a pipeline strategy.
+    </div>
+
+    <!-- KPIs -->
+    <div class="stat-grid">
+      <div class="stat-card">
+        <div class="num">127<span>+</span></div>
+        <div class="label">Americas Players</div>
+        <div class="sublabel">Active in Asia & Oceania</div>
+      </div>
+      <div class="stat-card">
+        <div class="num">14</div>
+        <div class="label">Leagues Covered</div>
+        <div class="sublabel">Japan, Korea, Indonesia, Thailand...</div>
+      </div>
+      <div class="stat-card">
+        <div class="num">62<span>%</span></div>
+        <div class="label">Success Rate</div>
+        <div class="sublabel">≥900 min played / season</div>
+      </div>
+      <div class="stat-card">
+        <div class="num">€45k</div>
+        <div class="label">Avg Transfer Fee</div>
+        <div class="sublabel">For Liga 1 profiles</div>
+      </div>
+      <div class="stat-card">
+        <div class="num">24.8</div>
+        <div class="label">Average Age</div>
+        <div class="sublabel">Americas players in Asia</div>
+      </div>
+    </div>
+
+    <!-- CHARTS ROW 1 -->
+    <div class="chart-grid">
+      <div class="chart-box">
+        <h3><span class="dot"></span> Americas Players by Asian/Oceanian League</h3>
+        <div class="bar-chart" id="byLeague"></div>
+
+        <!-- INDONESIA BREAKDOWN -->
+        <div style="margin-top:24px;padding-top:20px;border-top:1px solid var(--slate);">
+          <div style="display:flex;align-items:center;gap:8px;margin-bottom:14px;">
+            <span style="font-size:1.1rem;">🇮🇩</span>
+            <span style="font-family:'Barlow Condensed',sans-serif;font-size:0.85rem;font-weight:700;text-transform:uppercase;letter-spacing:2px;color:#E07B39;">Indonesia Breakdown</span>
+            <span style="font-size:0.72rem;color:var(--grey);letter-spacing:1px;text-transform:uppercase;">Liga 1 + Liga 2 · 2025/26</span>
+          </div>
+          <div class="bar-chart" id="indonesiaBreakdown"></div>
+
+          <!-- MINI STATS ROW -->
+          <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-top:16px;" id="indonesiaMiniStats">
+            <div style="background:rgba(230,126,34,0.1);border:1px solid rgba(230,126,34,0.3);padding:10px 12px;border-radius:2px;text-align:center;">
+              <div style="font-family:'Barlow Condensed',sans-serif;font-size:1.6rem;font-weight:900;color:#E07B39;">23</div>
+              <div style="font-size:0.68rem;color:var(--grey);letter-spacing:1px;text-transform:uppercase;margin-top:2px;">Total Americas</div>
+            </div>
+            <div style="background:rgba(200,16,46,0.1);border:1px solid rgba(200,16,46,0.3);padding:10px 12px;border-radius:2px;text-align:center;">
+              <div style="font-family:'Barlow Condensed',sans-serif;font-size:1.6rem;font-weight:900;color:#E63946;">🇧🇷 13</div>
+              <div style="font-size:0.68rem;color:var(--grey);letter-spacing:1px;text-transform:uppercase;margin-top:2px;">Brazilian (largest group)</div>
+            </div>
+            <div style="background:rgba(39,174,96,0.1);border:1px solid rgba(39,174,96,0.3);padding:10px 12px;border-radius:2px;text-align:center;">
+              <div style="font-family:'Barlow Condensed',sans-serif;font-size:1.6rem;font-weight:900;color:#27AE60;">€42k</div>
+              <div style="font-size:0.68rem;color:var(--grey);letter-spacing:1px;text-transform:uppercase;margin-top:2px;">Avg Transfer Fee Est.</div>
+            </div>
+            <div style="background:rgba(244,196,48,0.1);border:1px solid rgba(244,196,48,0.3);padding:10px 12px;border-radius:2px;text-align:center;">
+              <div style="font-family:'Barlow Condensed',sans-serif;font-size:1.6rem;font-weight:900;color:#F4C430;">24.6</div>
+              <div style="font-size:0.68rem;color:var(--grey);letter-spacing:1px;text-transform:uppercase;margin-top:2px;">Average Age</div>
+            </div>
+          </div>
+
+          <!-- CLUB TABLE -->
+          <div style="margin-top:14px;">
+            <div style="font-family:'Barlow Condensed',sans-serif;font-size:0.75rem;letter-spacing:2px;text-transform:uppercase;color:var(--grey);margin-bottom:8px;">Known Americas Players — Indonesian Clubs 2025/26</div>
+            <table class="data-table" id="indonesiaTable"></table>
+          </div>
+        </div>
+      </div>
+      <div class="chart-box">
+        <h3><span class="dot"></span> Origins: Americas Countries Represented</h3>
+        <div class="donut-wrap">
+          <canvas id="donutChart" width="160" height="160"></canvas>
+          <div class="donut-legend" id="donutLegend"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- KEY INSIGHT CARDS -->
+    <div class="section-label">
+      <div class="bar"></div>
+      <h2>Key Market Insights</h2>
+      <span>Per Country</span>
+    </div>
+    <div class="insight-grid">
+      <div class="insight-card">
+        <div class="i-flag">🇧🇷</div>
+        <div class="i-country">Brazil</div>
+        <ul class="i-points">
+          <li>Largest supplier to J-League & Indonesian Liga 1</li>
+          <li>Strong physicality — adapts well to intense Asian leagues</li>
+          <li>Avg. fee in Liga 1 Indonesia: €30–80k</li>
+          <li>Best profiles: Serie B graduates, 21–26 y.o.</li>
+        </ul>
+      </div>
+      <div class="insight-card">
+        <div class="i-flag">🇦🇷</div>
+        <div class="i-country">Argentina</div>
+        <ul class="i-points">
+          <li>Rising presence in K-League & Thailand</li>
+          <li>Excellent technique, leadership, set piece quality</li>
+          <li>Target: ex-Primera División players 24–28</li>
+          <li>Language adaptation: moderate challenge</li>
+        </ul>
+      </div>
+      <div class="insight-card">
+        <div class="i-flag">🇨🇴</div>
+        <div class="i-country">Colombia</div>
+        <ul class="i-points">
+          <li>Speed & physical duels — high adaptation ceiling</li>
+          <li>Active in Thai League & Malaysian Super League</li>
+          <li>U23 Primera División starters recommended</li>
+          <li>Affordable: avg. €20–50k at Liga 1 level</li>
+        </ul>
+      </div>
+      <div class="insight-card">
+        <div class="i-flag">🇺🇾</div>
+        <div class="i-country">Uruguay</div>
+        <ul class="i-points">
+          <li>Winning mentality & high competitive intelligence</li>
+          <li>Present in Japan (J2/J3) and Australia (A-League)</li>
+          <li>Underrepresented in Indonesia — opportunity</li>
+          <li>Typically free or low-fee profiles available</li>
+        </ul>
+      </div>
+      <div class="insight-card">
+        <div class="i-flag">🇲🇽</div>
+        <div class="i-country">Mexico</div>
+        <ul class="i-points">
+          <li>Good technique but physically lighter for Asia</li>
+          <li>Liga MX youth rejected players — interesting pool</li>
+          <li>Strong mentality & professional environment background</li>
+          <li>Language advantage over South Americans</li>
+        </ul>
+      </div>
+      <div class="insight-card">
+        <div class="i-flag">🇪🇨</div>
+        <div class="i-country">Ecuador</div>
+        <ul class="i-points">
+          <li>Physically outstanding — high altitude background</li>
+          <li>Very underrepresented in Asia: opportunity</li>
+          <li>U20 national team players increasingly available</li>
+          <li>Best: CB and DM profiles at free/low transfer</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- TAB 2: BY LEAGUE -->
+  <div id="tab-leagues" class="tab-panel">
+    <div class="section-label">
+      <div class="bar"></div>
+      <h2>By Country of Origin</h2>
+      <span>Americas players in Asia & Oceania</span>
+    </div>
+
+    <div class="chart-grid-3" style="margin-bottom:32px;">
+      <div class="chart-box">
+        <h3><span class="dot"></span> Players by Nationality</h3>
+        <div class="bar-chart" id="byNationality"></div>
+      </div>
+      <div class="chart-box">
+        <h3><span class="dot"></span> Minutes Played 2025/26</h3>
+        <div class="bar-chart" id="byMinutes"></div>
+      </div>
+      <div class="chart-box">
+        <h3><span class="dot"></span> Success Rate by Country</h3>
+        <div class="bar-chart" id="bySuccess"></div>
+      </div>
+    </div>
+
+    <div class="section-label">
+      <div class="bar"></div>
+      <h2>Country Detail Table</h2>
+    </div>
+    <div class="chart-box">
+      <table class="data-table" id="countryTable"></table>
+    </div>
+  </div>
+
+  <!-- TAB 3: AGE ANALYSIS -->
+  <div id="tab-age" class="tab-panel">
+    <div class="section-label">
+      <div class="bar"></div>
+      <h2>Age Distribution</h2>
+      <span>Americas players currently active in Asia/Oceania</span>
+    </div>
+
+    <div class="chart-grid">
+      <div class="chart-box">
+        <h3><span class="dot"></span> Players by Age Group</h3>
+        <canvas id="ageBarChart" width="500" height="280"></canvas>
+      </div>
+      <div class="chart-box">
+        <h3><span class="dot"></span> Age Profile by League</h3>
+        <div class="bar-chart" id="avgAgeByLeague"></div>
+      </div>
+    </div>
+
+    <div class="context-box" style="border-left-color: var(--red);">
+      <div class="title" style="color:var(--red);">Age Recommendation for Garudayaksa FC</div>
+      <strong>Target Window: 21–26 years old.</strong> Players aged 17–20 are ideal long-term investments but require development runway and adaptation time.
+      Players over 28 bring experience but limited re-sale value. For Liga 1 Indonesia, the sweet spot is <strong>23–26 with first-team experience in a South American first or second division</strong>.
+      Physical peak aligns with Liga 1 intensity demands, and adaptation curve is manageable within half a season.
+    </div>
+
+    <div class="section-label">
+      <div class="bar"></div>
+      <h2>Player Age Table</h2>
+    </div>
+    <div class="chart-box">
+      <table class="data-table" id="ageTable"></table>
+    </div>
+  </div>
+
+  <!-- TAB 4: PLAYER PROPOSALS -->
+  <div id="tab-proposals" class="tab-panel">
+
+    <!-- PHILOSOPHY BANNER -->
+    <div style="background:linear-gradient(135deg,var(--red-dark),#6B0015);border:1px solid var(--red);padding:28px 32px;margin-bottom:28px;border-radius:4px;position:relative;overflow:hidden;">
+      <div style="position:absolute;top:-30px;right:-30px;width:180px;height:180px;background:radial-gradient(circle,rgba(255,255,255,0.05) 0%,transparent 70%);border-radius:50%;"></div>
+      <div style="font-family:'Barlow Condensed',sans-serif;font-size:0.75rem;letter-spacing:3px;text-transform:uppercase;color:rgba(255,255,255,0.6);margin-bottom:8px;">Core Scouting Philosophy</div>
+      <div style="font-family:'Barlow Condensed',sans-serif;font-size:1.8rem;font-weight:900;text-transform:uppercase;letter-spacing:1px;color:#fff;line-height:1.15;margin-bottom:14px;">Sign Them Before the Market Does</div>
+      <div style="font-size:0.88rem;color:rgba(255,255,255,0.8);line-height:1.75;max-width:800px;">
+        The window is <strong style="color:#fff;">before</strong> these players explode. Target players at Segunda División / B Nacional / Expansión level who are
+        <strong style="color:#fff;">actively scanning for a first division opportunity</strong> — Liga 1 Indonesia is exactly that door for them.
+        They will accept Indonesia salary ranges <em>precisely because they have not been discovered yet</em>.
+        Sign them young, develop them at Liga 1 intensity, and capture the value before a European or bigger Asian club notices.
+        <br><br>
+        <strong style="color:#D4AC0D;">Age sweet spot: 19–23.</strong> Enough experience to contribute immediately. Ceiling still untouched.
+      </div>
+    </div>
+
+    <!-- TARGET MARKETS -->
+    <div class="section-label">
+      <div class="bar"></div>
+      <h2>Target Markets</h2>
+      <span>Where to look — and why</span>
+    </div>
+
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:32px;">
+
+      <div style="background:var(--navy-mid);border:1px solid var(--slate);border-top:3px solid #E63946;padding:22px;border-radius:2px;">
+        <div style="font-size:2rem;margin-bottom:10px;">&#x1F1FB;&#x1F1EA;</div>
+        <div style="font-family:'Barlow Condensed',sans-serif;font-size:1.1rem;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:#fff;margin-bottom:6px;">Venezuela — Liga FUTVE</div>
+        <div style="display:inline-block;background:rgba(39,174,96,0.15);border:1px solid rgba(39,174,96,0.4);color:#27AE60;font-size:0.7rem;font-weight:600;letter-spacing:2px;text-transform:uppercase;padding:2px 10px;border-radius:20px;margin-bottom:12px;">Underpriced · Rising Quality</div>
+        <ul style="list-style:none;display:flex;flex-direction:column;gap:6px;">
+          <li style="font-size:0.8rem;color:var(--grey-light);display:flex;gap:8px;"><span style="color:var(--red);">&#8594;</span>Severely underrepresented in Asia — almost zero competition from other scouts</li>
+          <li style="font-size:0.8rem;color:var(--grey-light);display:flex;gap:8px;"><span style="color:var(--red);">&#8594;</span>Cheap or free transfers, low salary expectations</li>
+          <li style="font-size:0.8rem;color:var(--grey-light);display:flex;gap:8px;"><span style="color:var(--red);">&#8594;</span>Increasingly competitive national team proving quality at CONMEBOL level</li>
+          <li style="font-size:0.8rem;color:var(--grey-light);display:flex;gap:8px;"><span style="color:var(--red);">&#8594;</span>Best profiles: physical wingers and CB, 20–24 y.o.</li>
+        </ul>
+      </div>
+
+      <div style="background:var(--navy-mid);border:1px solid var(--slate);border-top:3px solid #3498DB;padding:22px;border-radius:2px;">
+        <div style="font-size:2rem;margin-bottom:10px;">&#x1F1E6;&#x1F1F7;</div>
+        <div style="font-family:'Barlow Condensed',sans-serif;font-size:1.1rem;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:#fff;margin-bottom:6px;">Argentina — Primera B / Primera C</div>
+        <div style="display:inline-block;background:rgba(52,152,219,0.15);border:1px solid rgba(52,152,219,0.4);color:#3498DB;font-size:0.7rem;font-weight:600;letter-spacing:2px;text-transform:uppercase;padding:2px 10px;border-radius:20px;margin-bottom:12px;">Technical · Disciplined · Affordable</div>
+        <ul style="list-style:none;display:flex;flex-direction:column;gap:6px;">
+          <li style="font-size:0.8rem;color:var(--grey-light);display:flex;gap:8px;"><span style="color:var(--red);">&#8594;</span>Technically sharp, winning mentality embedded from youth</li>
+          <li style="font-size:0.8rem;color:var(--grey-light);display:flex;gap:8px;"><span style="color:var(--red);">&#8594;</span>B Nacional / C players hungry for first division exposure abroad</li>
+          <li style="font-size:0.8rem;color:var(--grey-light);display:flex;gap:8px;"><span style="color:var(--red);">&#8594;</span>Low transfer costs — many available near-free or on short contracts</li>
+          <li style="font-size:0.8rem;color:var(--grey-light);display:flex;gap:8px;"><span style="color:var(--red);">&#8594;</span>Best profiles: CM, CB, winger, 19–23 y.o.</li>
+        </ul>
+      </div>
+
+      <div style="background:var(--navy-mid);border:1px solid var(--slate);border-top:3px solid #27AE60;padding:22px;border-radius:2px;">
+        <div style="font-size:2rem;margin-bottom:10px;">&#x1F1F2;&#x1F1FD;</div>
+        <div style="font-family:'Barlow Condensed',sans-serif;font-size:1.1rem;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:#fff;margin-bottom:6px;">Mexico — Liga de Expansión MX</div>
+        <div style="display:inline-block;background:rgba(39,174,96,0.15);border:1px solid rgba(39,174,96,0.4);color:#27AE60;font-size:0.7rem;font-weight:600;letter-spacing:2px;text-transform:uppercase;padding:2px 10px;border-radius:20px;margin-bottom:12px;">Good Facilities Background · Technique</div>
+        <ul style="list-style:none;display:flex;flex-direction:column;gap:6px;">
+          <li style="font-size:0.8rem;color:var(--grey-light);display:flex;gap:8px;"><span style="color:var(--red);">&#8594;</span>Liga MX youth rejects with professional environment background</li>
+          <li style="font-size:0.8rem;color:var(--grey-light);display:flex;gap:8px;"><span style="color:var(--red);">&#8594;</span>Good technique, tactical discipline — open to Asia move</li>
+          <li style="font-size:0.8rem;color:var(--grey-light);display:flex;gap:8px;"><span style="color:var(--red);">&#8594;</span>Expansion clubs often release players mid-season at low or zero cost</li>
+          <li style="font-size:0.8rem;color:var(--grey-light);display:flex;gap:8px;"><span style="color:var(--red);">&#8594;</span>Best profiles: AM, winger, GK with ball-playing skills</li>
+        </ul>
+      </div>
+
+      <div style="background:var(--navy-mid);border:1px solid var(--slate);border-top:3px solid #F4C430;padding:22px;border-radius:2px;">
+        <div style="font-size:2rem;margin-bottom:10px;">&#x1F1FA;&#x1F1F8;</div>
+        <div style="font-family:'Barlow Condensed',sans-serif;font-size:1.1rem;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:#fff;margin-bottom:6px;">USA — USL Championship / League One</div>
+        <div style="display:inline-block;background:rgba(244,196,48,0.15);border:1px solid rgba(244,196,48,0.4);color:#F4C430;font-size:0.7rem;font-weight:600;letter-spacing:2px;text-transform:uppercase;padding:2px 10px;border-radius:20px;margin-bottom:12px;">Physical · English-Speaking · Low Cost</div>
+        <ul style="list-style:none;display:flex;flex-direction:column;gap:6px;">
+          <li style="font-size:0.8rem;color:var(--grey-light);display:flex;gap:8px;"><span style="color:var(--red);">&#8594;</span>English language = fastest adaptation to professional structure</li>
+          <li style="font-size:0.8rem;color:var(--grey-light);display:flex;gap:8px;"><span style="color:var(--red);">&#8594;</span>Physical profile above average — built for intensity</li>
+          <li style="font-size:0.8rem;color:var(--grey-light);display:flex;gap:8px;"><span style="color:var(--red);">&#8594;</span>USL L1 players actively seeking a first division step-up abroad</li>
+          <li style="font-size:0.8rem;color:var(--grey-light);display:flex;gap:8px;"><span style="color:var(--red);">&#8594;</span>Best profiles: FB, DM, physical winger</li>
+        </ul>
+      </div>
+
+      <div style="background:var(--navy-mid);border:1px solid var(--slate);border-top:3px solid #9B59B6;padding:22px;border-radius:2px;">
+        <div style="font-size:2rem;margin-bottom:10px;">&#x1F1E8;&#x1F1F4;</div>
+        <div style="font-family:'Barlow Condensed',sans-serif;font-size:1.1rem;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:#fff;margin-bottom:6px;">Colombia — Torneo Betplay / Segunda</div>
+        <div style="display:inline-block;background:rgba(155,89,182,0.15);border:1px solid rgba(155,89,182,0.4);color:#9B59B6;font-size:0.7rem;font-weight:600;letter-spacing:2px;text-transform:uppercase;padding:2px 10px;border-radius:20px;margin-bottom:12px;">Speed · Direct · Near-Free</div>
+        <ul style="list-style:none;display:flex;flex-direction:column;gap:6px;">
+          <li style="font-size:0.8rem;color:var(--grey-light);display:flex;gap:8px;"><span style="color:var(--red);">&#8594;</span>Speed merchants and direct players — suit Liga 1 Indonesia tempo</li>
+          <li style="font-size:0.8rem;color:var(--grey-light);display:flex;gap:8px;"><span style="color:var(--red);">&#8594;</span>Often uncontracted or on month-to-month deals</li>
+          <li style="font-size:0.8rem;color:var(--grey-light);display:flex;gap:8px;"><span style="color:var(--red);">&#8594;</span>Betplay Segunda players hungry for Liga 1 visibility anywhere</li>
+          <li style="font-size:0.8rem;color:var(--grey-light);display:flex;gap:8px;"><span style="color:var(--red);">&#8594;</span>Best profiles: winger, striker, physical CB</li>
+        </ul>
+      </div>
+
+      <div style="background:var(--navy-mid);border:1px solid var(--slate);border-top:3px solid #1ABC9C;padding:22px;border-radius:2px;">
+        <div style="font-size:2rem;margin-bottom:10px;">&#x1F1E8;&#x1F1F1;</div>
+        <div style="font-family:'Barlow Condensed',sans-serif;font-size:1.1rem;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:#fff;margin-bottom:6px;">Chile — Primera B / Segunda</div>
+        <div style="display:inline-block;background:rgba(26,188,156,0.15);border:1px solid rgba(26,188,156,0.4);color:#1ABC9C;font-size:0.7rem;font-weight:600;letter-spacing:2px;text-transform:uppercase;padding:2px 10px;border-radius:20px;margin-bottom:12px;">Methodology · Structure · Growing</div>
+        <ul style="list-style:none;display:flex;flex-direction:column;gap:6px;">
+          <li style="font-size:0.8rem;color:var(--grey-light);display:flex;gap:8px;"><span style="color:var(--red);">&#8594;</span>New generation shaped by Nicolás Córdova's methodology — structured, positional, intelligent</li>
+          <li style="font-size:0.8rem;color:var(--grey-light);display:flex;gap:8px;"><span style="color:var(--red);">&#8594;</span>Technically improving fast — historically underestimated</li>
+          <li style="font-size:0.8rem;color:var(--grey-light);display:flex;gap:8px;"><span style="color:var(--red);">&#8594;</span>Physical readiness still developing — buy young, build here</li>
+          <li style="font-size:0.8rem;color:var(--grey-light);display:flex;gap:8px;"><span style="color:var(--red);">&#8594;</span>Best profiles: CM, CB, technically gifted winger</li>
+        </ul>
+      </div>
+
+
+      <div style="background:var(--navy-mid);border:1px solid var(--slate);border-top:3px solid #F39C12;padding:22px;border-radius:2px;">
+        <div style="font-size:2rem;margin-bottom:10px;">&#x1F1EF;&#x1F1F2;</div>
+        <div style="font-family:'Barlow Condensed',sans-serif;font-size:1.1rem;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:#fff;margin-bottom:6px;">Jamaica — National League</div>
+        <div style="display:inline-block;background:rgba(243,156,18,0.15);border:1px solid rgba(243,156,18,0.4);color:#F39C12;font-size:0.7rem;font-weight:600;letter-spacing:2px;text-transform:uppercase;padding:2px 10px;border-radius:20px;margin-bottom:12px;">Explosive · Resistant · English-Speaking</div>
+        <ul style="list-style:none;display:flex;flex-direction:column;gap:6px;">
+          <li style="font-size:0.8rem;color:var(--grey-light);display:flex;gap:8px;"><span style="color:var(--red);">&#8594;</span>Among the fastest players in the Americas — elite sprint and max speed profiles</li>
+          <li style="font-size:0.8rem;color:var(--grey-light);display:flex;gap:8px;"><span style="color:var(--red);">&#8594;</span>Physically resilient — high workload tolerance, excellent for Liga 1 intensity</li>
+          <li style="font-size:0.8rem;color:var(--grey-light);display:flex;gap:8px;"><span style="color:var(--red);">&#8594;</span>English language = zero adaptation barrier, fastest integration curve</li>
+          <li style="font-size:0.8rem;color:var(--grey-light);display:flex;gap:8px;"><span style="color:var(--red);">&#8594;</span>Pipeline proven in Europe — Bournemouth, Leverkusen tracking same pool</li>
+          <li style="font-size:0.8rem;color:var(--grey-light);display:flex;gap:8px;"><span style="color:var(--red);">&#8594;</span>Best profiles: winger, striker, athletic FB — 19–24 y.o.</li>
+        </ul>
+      </div>
+
+      <div style="background:var(--navy-mid);border:1px solid var(--slate);border-top:3px solid #2980B9;padding:22px;border-radius:2px;">
+        <div style="font-size:2rem;margin-bottom:10px;">&#x1F1E8;&#x1F1FC;</div>
+        <div style="font-family:'Barlow Condensed',sans-serif;font-size:1.1rem;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:#fff;margin-bottom:6px;">Curaçao — Eredivisie Pipeline</div>
+        <div style="display:inline-block;background:rgba(41,128,185,0.15);border:1px solid rgba(41,128,185,0.4);color:#2980B9;font-size:0.7rem;font-weight:600;letter-spacing:2px;text-transform:uppercase;padding:2px 10px;border-radius:20px;margin-bottom:12px;">Dutch Methodology · Multilingual · Underscreened</div>
+        <ul style="list-style:none;display:flex;flex-direction:column;gap:6px;">
+          <li style="font-size:0.8rem;color:var(--grey-light);display:flex;gap:8px;"><span style="color:var(--red);">&#8594;</span>Dutch football methodology background — positional, technically structured</li>
+          <li style="font-size:0.8rem;color:var(--grey-light);display:flex;gap:8px;"><span style="color:var(--red);">&#8594;</span>Multilingual: English, Dutch, Papiamentu — exceptional communication adaptability</li>
+          <li style="font-size:0.8rem;color:var(--grey-light);display:flex;gap:8px;"><span style="color:var(--red);">&#8594;</span>Almost zero Asian scout presence — first mover advantage is real</li>
+          <li style="font-size:0.8rem;color:var(--grey-light);display:flex;gap:8px;"><span style="color:var(--red);">&#8594;</span>Players often overlooked despite quality European youth exposure</li>
+          <li style="font-size:0.8rem;color:var(--grey-light);display:flex;gap:8px;"><span style="color:var(--red);">&#8594;</span>Best profiles: technical CM, winger, CB — 20–25 y.o.</li>
+        </ul>
+      </div>
+
+      <div style="background:var(--navy-mid);border:1px solid var(--slate);border-top:3px solid #E74C3C;padding:22px;border-radius:2px;">
+        <div style="font-size:2rem;margin-bottom:10px;">&#x1F334;</div>
+        <div style="font-family:'Barlow Condensed',sans-serif;font-size:1.1rem;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:#fff;margin-bottom:6px;">Caribbean — T&T · Barbados · Haiti</div>
+        <div style="display:inline-block;background:rgba(231,76,60,0.15);border:1px solid rgba(231,76,60,0.4);color:#E74C3C;font-size:0.7rem;font-weight:600;letter-spacing:2px;text-transform:uppercase;padding:2px 10px;border-radius:20px;margin-bottom:12px;">Fast · Resistant · Near-Zero Cost</div>
+        <ul style="list-style:none;display:flex;flex-direction:column;gap:6px;">
+          <li style="font-size:0.8rem;color:var(--grey-light);display:flex;gap:8px;"><span style="color:var(--red);">&#8594;</span>Exceptional physical resilience — built for heat, intensity, high-volume play</li>
+          <li style="font-size:0.8rem;color:var(--grey-light);display:flex;gap:8px;"><span style="color:var(--red);">&#8594;</span>English and French speaking across the region — communication barrier near zero</li>
+          <li style="font-size:0.8rem;color:var(--grey-light);display:flex;gap:8px;"><span style="color:var(--red);">&#8594;</span>Transfer costs near zero — most players uncontracted or on amateur terms</li>
+          <li style="font-size:0.8rem;color:var(--grey-light);display:flex;gap:8px;"><span style="color:var(--red);">&#8594;</span>Hungry for any professional first division platform — motivation very high</li>
+          <li style="font-size:0.8rem;color:var(--grey-light);display:flex;gap:8px;"><span style="color:var(--red);">&#8594;</span>Best profiles: explosive winger, striker, physical DM — 19–23 y.o.</li>
+        </ul>
+      </div>
+
+    </div>
+
+    <!-- PLAYER CARDS PLACEHOLDER -->
+    <div class="section-label">
+      <div class="bar"></div>
+      <h2>Player Proposals</h2>
+      <span>First Team Ready — immediate impact candidates</span>
+    </div>
+    <div style="background:var(--navy-mid);border:1px dashed var(--slate);padding:48px;text-align:center;margin-bottom:24px;border-radius:4px;">
+      <div style="font-size:2.5rem;margin-bottom:12px;">&#x1F4CB;</div>
+      <div style="font-family:'Barlow Condensed',sans-serif;font-size:1rem;font-weight:700;text-transform:uppercase;letter-spacing:2px;color:var(--grey);margin-bottom:6px;">Awaiting Player Names</div>
+      <div style="font-size:0.82rem;color:var(--grey);max-width:400px;margin:0 auto;">First team ready proposals will be added here once names are confirmed by the scout.</div>
+    </div>
+    <div class="player-grid" id="firstTeamCards"></div>
+
+    <div class="section-label">
+      <div class="bar"></div>
+      <h2>High Potential / Hidden Gems</h2>
+      <span>19–23 y.o. — before the market notices</span>
+    </div>
+    <div style="background:var(--navy-mid);border:1px dashed var(--slate);padding:48px;text-align:center;margin-bottom:24px;border-radius:4px;">
+      <div style="font-size:2.5rem;margin-bottom:12px;">&#x1F50D;</div>
+      <div style="font-family:'Barlow Condensed',sans-serif;font-size:1rem;font-weight:700;text-transform:uppercase;letter-spacing:2px;color:var(--grey);margin-bottom:6px;">Awaiting Player Names</div>
+      <div style="font-size:0.82rem;color:var(--grey);max-width:400px;margin:0 auto;">Hidden gem proposals will be added here — low cost, high ceiling, pre-explosion window.</div>
+    </div>
+    <div class="player-grid" id="youngCards"></div>
+
+  </div>
+
+  <!-- TAB 6: SCOUTING PROCESS -->
+  <div id="tab-process" class="tab-panel">
+
+    <!-- CYFERD HEADER -->
+    <div style="background:linear-gradient(135deg,#0d2a2e,#1a4a50);border:1px solid #2a7a80;padding:24px 32px;margin-bottom:28px;border-radius:4px;display:flex;justify-content:space-between;align-items:center;">
+      <div>
+        <div style="font-family:'Barlow Condensed',sans-serif;font-size:0.72rem;letter-spacing:3px;text-transform:uppercase;color:#4ECDC4;margin-bottom:6px;">Powered by</div>
+        <div style="font-family:'Barlow Condensed',sans-serif;font-size:2rem;font-weight:900;letter-spacing:4px;color:#fff;">CYFERD <span style="color:#4ECDC4;">SPORTS</span></div>
+        <div style="font-size:0.85rem;color:rgba(255,255,255,0.65);margin-top:4px;font-style:italic;">From fragmented scouting to an integrated, flexible workflow.</div>
+      </div>
+      <div style="text-align:right;">
+        <div style="font-size:0.75rem;color:rgba(255,255,255,0.5);letter-spacing:1px;text-transform:uppercase;">Mission</div>
+        <div style="font-family:'Barlow Condensed',sans-serif;font-size:1rem;font-weight:700;color:#4ECDC4;margin-top:4px;">Full Universe → Data → Subjective → Algorithm → Shortlist</div>
+        <div style="font-size:0.78rem;color:rgba(255,255,255,0.5);margin-top:4px;">Reduce risk. Save time. Build a stronger squad — all in one place.</div>
+      </div>
+    </div>
+
+    <!-- GOAL -->
+    <div style="background:var(--navy-mid);border:1px solid var(--slate);border-left:4px solid #4ECDC4;padding:18px 24px;margin-bottom:28px;font-size:0.88rem;color:var(--grey-light);line-height:1.7;">
+      <div style="font-family:'Barlow Condensed',sans-serif;font-size:0.75rem;letter-spacing:2px;text-transform:uppercase;color:#4ECDC4;margin-bottom:6px;">Goal of the Scouting Department</div>
+      Be always ready to present players for the first team — taking into account <strong style="color:#fff;">financial viability</strong>, <strong style="color:#fff;">market opportunities</strong>, <strong style="color:#fff;">roster awareness</strong>, and <strong style="color:#fff;">physical adaptability</strong> to the club and the league.
+    </div>
+
+    <!-- FULL PROCESS TIMELINE -->
+    <div class="section-label">
+      <div class="bar"></div>
+      <h2>Full Scouting Process</h2>
+      <span>Defined by Luis Fernando Espejo</span>
+    </div>
+
+    <!-- PHASE STRIP -->
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:2px;margin-bottom:28px;">
+      <div style="background:rgba(78,205,196,0.15);border:1px solid rgba(78,205,196,0.4);padding:10px 16px;text-align:center;">
+        <div style="font-family:'Barlow Condensed',sans-serif;font-size:0.9rem;font-weight:700;text-transform:uppercase;letter-spacing:2px;color:#4ECDC4;">Phase 1</div>
+        <div style="font-size:0.78rem;color:rgba(255,255,255,0.7);margin-top:2px;">What to look for?</div>
+      </div>
+      <div style="background:rgba(230,126,34,0.15);border:1px solid rgba(230,126,34,0.4);padding:10px 16px;text-align:center;">
+        <div style="font-family:'Barlow Condensed',sans-serif;font-size:0.9rem;font-weight:700;text-transform:uppercase;letter-spacing:2px;color:#E07B39;">Phase 2</div>
+        <div style="font-size:0.78rem;color:rgba(255,255,255,0.7);margin-top:2px;">Analysis</div>
+      </div>
+      <div style="background:rgba(200,16,46,0.15);border:1px solid rgba(200,16,46,0.4);padding:10px 16px;text-align:center;">
+        <div style="font-family:'Barlow Condensed',sans-serif;font-size:0.9rem;font-weight:700;text-transform:uppercase;letter-spacing:2px;color:#E63946;">Phase 3</div>
+        <div style="font-size:0.78rem;color:rgba(255,255,255,0.7);margin-top:2px;">Recommendations</div>
+      </div>
+    </div>
+
+    <!-- PHASE 1 -->
+    <div style="margin-bottom:32px;">
+      <div style="display:flex;align-items:center;gap:12px;margin-bottom:16px;">
+        <div style="background:#4ECDC4;color:#0d2a2e;font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:0.8rem;letter-spacing:2px;padding:4px 12px;text-transform:uppercase;">Phase 1 — What to Look For?</div>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:12px;">
+
+        <div style="background:var(--navy-mid);border:1px solid var(--slate);border-top:3px solid #4ECDC4;padding:18px;">
+          <div style="font-size:1.6rem;margin-bottom:8px;">🏟️</div>
+          <div style="font-family:'Barlow Condensed',sans-serif;font-size:0.95rem;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:#4ECDC4;margin-bottom:10px;">Club Methodology</div>
+          <ul style="list-style:none;display:flex;flex-direction:column;gap:5px;">
+            <li style="font-size:0.78rem;color:var(--grey-light);display:flex;gap:6px;"><span style="color:#4ECDC4;">→</span>Define club identity: selling or performance club?</li>
+            <li style="font-size:0.78rem;color:var(--grey-light);display:flex;gap:6px;"><span style="color:#4ECDC4;">→</span>Map game style: Defensive Phase, Attacking Phase, Pressing, Set Pieces</li>
+            <li style="font-size:0.78rem;color:var(--grey-light);display:flex;gap:6px;"><span style="color:#4ECDC4;">→</span>Identify behaviors: e.g. reaction when losing the ball</li>
+            <li style="font-size:0.78rem;color:var(--grey-light);display:flex;gap:6px;"><span style="color:#4ECDC4;">→</span>Multi-club structure awareness</li>
+          </ul>
+        </div>
+
+        <div style="background:var(--navy-mid);border:1px solid var(--slate);border-top:3px solid #4ECDC4;padding:18px;">
+          <div style="font-size:1.6rem;margin-bottom:8px;">📊</div>
+          <div style="font-family:'Barlow Condensed',sans-serif;font-size:0.95rem;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:#4ECDC4;margin-bottom:10px;">Squad Succession</div>
+          <ul style="list-style:none;display:flex;flex-direction:column;gap:5px;">
+            <li style="font-size:0.78rem;color:var(--grey-light);display:flex;gap:6px;"><span style="color:#4ECDC4;">→</span>Squad Ladder: contract expiry, age distribution, positional depth</li>
+            <li style="font-size:0.78rem;color:var(--grey-light);display:flex;gap:6px;"><span style="color:#4ECDC4;">→</span>Benchmark: Young 6% · Young Pro 24% · Experienced 46% · Veterans 24%</li>
+            <li style="font-size:0.78rem;color:var(--grey-light);display:flex;gap:6px;"><span style="color:#4ECDC4;">→</span>Check Liga 1 foreign player slot limits</li>
+            <li style="font-size:0.78rem;color:var(--grey-light);display:flex;gap:6px;"><span style="color:#4ECDC4;">→</span>Define Domestic / U21 / Foreign roster slots</li>
+          </ul>
+        </div>
+
+        <div style="background:var(--navy-mid);border:1px solid var(--slate);border-top:3px solid #4ECDC4;padding:18px;">
+          <div style="font-size:1.6rem;margin-bottom:8px;">📈</div>
+          <div style="font-family:'Barlow Condensed',sans-serif;font-size:0.95rem;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:#4ECDC4;margin-bottom:10px;">Season Overview</div>
+          <ul style="list-style:none;display:flex;flex-direction:column;gap:5px;">
+            <li style="font-size:0.78rem;color:var(--grey-light);display:flex;gap:6px;"><span style="color:#4ECDC4;">→</span>End-of-season meeting: SD + Coaching Staff</li>
+            <li style="font-size:0.78rem;color:var(--grey-light);display:flex;gap:6px;"><span style="color:#4ECDC4;">→</span>Review collective & positional data (xG, crossing, injuries)</li>
+            <li style="font-size:0.78rem;color:var(--grey-light);display:flex;gap:6px;"><span style="color:#4ECDC4;">→</span>Output: positions needed + ideal attributes — no names yet</li>
+            <li style="font-size:0.78rem;color:var(--grey-light);display:flex;gap:6px;"><span style="color:#4ECDC4;">→</span>Sports Science input: workloads, injuries, nutrition trends</li>
+          </ul>
+        </div>
+
+        <div style="background:var(--navy-mid);border:1px solid var(--slate);border-top:3px solid #4ECDC4;padding:18px;">
+          <div style="font-size:1.6rem;margin-bottom:8px;">⚽</div>
+          <div style="font-family:'Barlow Condensed',sans-serif;font-size:0.95rem;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:#4ECDC4;margin-bottom:10px;">Sporting Director Alignment</div>
+          <ul style="list-style:none;display:flex;flex-direction:column;gap:5px;">
+            <li style="font-size:0.78rem;color:var(--grey-light);display:flex;gap:6px;"><span style="color:#4ECDC4;">→</span>Define player profile structure (Seirullo 8 conditions model)</li>
+            <li style="font-size:0.78rem;color:var(--grey-light);display:flex;gap:6px;"><span style="color:#4ECDC4;">→</span>Bridge methodology → data: e.g. "hold-up striker" → ball retention stats</li>
+            <li style="font-size:0.78rem;color:var(--grey-light);display:flex;gap:6px;"><span style="color:#4ECDC4;">→</span>Build weighted Score per position</li>
+            <li style="font-size:0.78rem;color:var(--grey-light);display:flex;gap:6px;"><span style="color:#4ECDC4;">→</span>Averages per 90 · League-adjusted · Context-weighted</li>
+          </ul>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- PHASE 2 -->
+    <div style="margin-bottom:32px;">
+      <div style="display:flex;align-items:center;gap:12px;margin-bottom:16px;">
+        <div style="background:#E07B39;color:#fff;font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:0.8rem;letter-spacing:2px;padding:4px 12px;text-transform:uppercase;">Phase 2 — Analysis</div>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:12px;">
+
+        <div style="background:var(--navy-mid);border:1px solid var(--slate);border-top:3px solid #E07B39;padding:18px;">
+          <div style="font-size:1.6rem;margin-bottom:8px;">🔬</div>
+          <div style="font-family:'Barlow Condensed',sans-serif;font-size:0.95rem;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:#E07B39;margin-bottom:10px;">Data Analysis</div>
+          <ul style="list-style:none;display:flex;flex-direction:column;gap:5px;">
+            <li style="font-size:0.78rem;color:var(--grey-light);display:flex;gap:6px;"><span style="color:#E07B39;">→</span>Break season into 8-game blocks — assess consistency, not peaks</li>
+            <li style="font-size:0.78rem;color:var(--grey-light);display:flex;gap:6px;"><span style="color:#E07B39;">→</span>Build ranking per position per league every 8 weeks</li>
+            <li style="font-size:0.78rem;color:var(--grey-light);display:flex;gap:6px;"><span style="color:#E07B39;">→</span>Key metrics: xG, Club Score, Goals Added, Passes Packed, % Crossing, 1v1 Duels</li>
+            <li style="font-size:0.78rem;color:var(--grey-light);display:flex;gap:6px;"><span style="color:#E07B39;">→</span>Add physical layer: Max Speed, HSR, HI Count, Accelerations</li>
+            <li style="font-size:0.78rem;color:var(--grey-light);display:flex;gap:6px;"><span style="color:#E07B39;">→</span><em style="color:rgba(255,255,255,0.4);">Data is always a bias — context is everything</em></li>
+          </ul>
+        </div>
+
+        <div style="background:var(--navy-mid);border:1px solid var(--slate);border-top:3px solid #E07B39;padding:18px;">
+          <div style="font-size:1.6rem;margin-bottom:8px;">🖥️</div>
+          <div style="font-family:'Barlow Condensed',sans-serif;font-size:0.95rem;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:#E07B39;margin-bottom:10px;">Platform Benchmark</div>
+          <ul style="list-style:none;display:flex;flex-direction:column;gap:5px;">
+            <li style="font-size:0.78rem;color:var(--grey-light);display:flex;gap:6px;"><span style="color:#E07B39;">→</span><strong style="color:#fff;">Big Data:</strong> Impect, StatsBomb, Opta, Driblab, FBref, ASA</li>
+            <li style="font-size:0.78rem;color:var(--grey-light);display:flex;gap:6px;"><span style="color:#E07B39;">→</span><strong style="color:#fff;">Physical/Game IQ:</strong> Skill Corner (most advanced — runs, pressure, passing execution)</li>
+            <li style="font-size:0.78rem;color:var(--grey-light);display:flex;gap:6px;"><span style="color:#E07B39;">→</span><strong style="color:#fff;">Regional:</strong> GolStats (MX), Eyeball (Africa), Delphlyx</li>
+            <li style="font-size:0.78rem;color:var(--grey-light);display:flex;gap:6px;"><span style="color:#E07B39;">→</span><strong style="color:#fff;">Transfer Tools:</strong> TransferRoom, Libro de Pases, Recruitment Hub (Pelly)</li>
+            <li style="font-size:0.78rem;color:var(--grey-light);display:flex;gap:6px;"><span style="color:#E07B39;">→</span>Similarity tools: "Who plays like Player X?" — most used predictive element</li>
+          </ul>
+        </div>
+
+        <div style="background:var(--navy-mid);border:1px solid var(--slate);border-top:3px solid #E07B39;padding:18px;">
+          <div style="font-size:1.6rem;margin-bottom:8px;">📋</div>
+          <div style="font-family:'Barlow Condensed',sans-serif;font-size:0.95rem;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:#E07B39;margin-bottom:10px;">Player Report</div>
+          <ul style="list-style:none;display:flex;flex-direction:column;gap:5px;">
+            <li style="font-size:0.78rem;color:var(--grey-light);display:flex;gap:6px;"><span style="color:#E07B39;">→</span>Platform templates (Wyscout, Driblab) or own club format</li>
+            <li style="font-size:0.78rem;color:var(--grey-light);display:flex;gap:6px;"><span style="color:#E07B39;">→</span>Voice notes or short questionnaires first — full report for AAA priority only</li>
+            <li style="font-size:0.78rem;color:var(--grey-light);display:flex;gap:6px;"><span style="color:#E07B39;">→</span>Tournament reports: cover events, assess level, spot future targets</li>
+            <li style="font-size:0.78rem;color:var(--grey-light);display:flex;gap:6px;"><span style="color:#E07B39;">→</span>AI support: Peak AI most interesting tool emerging in the market</li>
+            <li style="font-size:0.78rem;color:var(--grey-light);display:flex;gap:6px;"><span style="color:#E07B39;">→</span>Always cross-reference: data + video + live or trusted reference</li>
+          </ul>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- PHASE 3 -->
+    <div style="margin-bottom:32px;">
+      <div style="display:flex;align-items:center;gap:12px;margin-bottom:16px;">
+        <div style="background:#E63946;color:#fff;font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:0.8rem;letter-spacing:2px;padding:4px 12px;text-transform:uppercase;">Phase 3 — Recommendations</div>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:12px;">
+
+        <div style="background:var(--navy-mid);border:1px solid var(--slate);border-top:3px solid #E63946;padding:18px;">
+          <div style="font-size:1.6rem;margin-bottom:8px;">📝</div>
+          <div style="font-family:'Barlow Condensed',sans-serif;font-size:0.95rem;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:#E63946;margin-bottom:10px;">Shortlist Considering Phase 1</div>
+          <ul style="list-style:none;display:flex;flex-direction:column;gap:5px;">
+            <li style="font-size:0.78rem;color:var(--grey-light);display:flex;gap:6px;"><span style="color:#E63946;">→</span>Maintain live scouting lists with target updates</li>
+            <li style="font-size:0.78rem;color:var(--grey-light);display:flex;gap:6px;"><span style="color:#E63946;">→</span>Receive pitches via TransferRoom and agents</li>
+            <li style="font-size:0.78rem;color:var(--grey-light);display:flex;gap:6px;"><span style="color:#E63946;">→</span>Filter against Phase 1 profile — no exceptions on club fit</li>
+            <li style="font-size:0.78rem;color:var(--grey-light);display:flex;gap:6px;"><span style="color:#E63946;">→</span>Prioritize key tournaments to spot new gems</li>
+            <li style="font-size:0.78rem;color:var(--grey-light);display:flex;gap:6px;"><span style="color:#E63946;">→</span>Collect monthly scout reports with ratings & comments</li>
+          </ul>
+        </div>
+
+        <div style="background:var(--navy-mid);border:1px solid var(--slate);border-top:3px solid #E63946;padding:18px;">
+          <div style="font-size:1.6rem;margin-bottom:8px;">⚖️</div>
+          <div style="font-family:'Barlow Condensed',sans-serif;font-size:0.95rem;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:#E63946;margin-bottom:10px;">Candidates Comparison</div>
+          <ul style="list-style:none;display:flex;flex-direction:column;gap:5px;">
+            <li style="font-size:0.78rem;color:var(--grey-light);display:flex;gap:6px;"><span style="color:#E63946;">→</span>Merge subjective scout views with Big Data + Physical Data</li>
+            <li style="font-size:0.78rem;color:var(--grey-light);display:flex;gap:6px;"><span style="color:#E63946;">→</span>SD compares all profiles: attribute scores + league benchmarks</li>
+            <li style="font-size:0.78rem;color:var(--grey-light);display:flex;gap:6px;"><span style="color:#E63946;">→</span>Every signing justified with objective AND subjective evidence</li>
+            <li style="font-size:0.78rem;color:var(--grey-light);display:flex;gap:6px;"><span style="color:#E63946;">→</span>Teams playing same game style = higher adaptation probability</li>
+          </ul>
+        </div>
+
+        <div style="background:var(--navy-mid);border:1px solid var(--slate);border-top:3px solid #E63946;padding:18px;">
+          <div style="font-size:1.6rem;margin-bottom:8px;">🧠</div>
+          <div style="font-family:'Barlow Condensed',sans-serif;font-size:0.95rem;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:#E63946;margin-bottom:10px;">Game Intelligence</div>
+          <ul style="list-style:none;display:flex;flex-direction:column;gap:5px;">
+            <li style="font-size:0.78rem;color:var(--grey-light);display:flex;gap:6px;"><span style="color:#E63946;">→</span>Skill Corner: Runs (Dropping, Coming Short, Pulling Wide, Support)</li>
+            <li style="font-size:0.78rem;color:var(--grey-light);display:flex;gap:6px;"><span style="color:#E63946;">→</span>Passing execution: Opportunities + Threat generated through passes to runs</li>
+            <li style="font-size:0.78rem;color:var(--grey-light);display:flex;gap:6px;"><span style="color:#E63946;">→</span>Resisting Pressure: % high pressure received + ball retention per type</li>
+            <li style="font-size:0.78rem;color:var(--grey-light);display:flex;gap:6px;"><span style="color:#E63946;">→</span>Physical: Max Speed, HSR, HI Count — compare vs PL / Liga 1 benchmarks</li>
+          </ul>
+        </div>
+
+      </div>
+
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:12px;">
+
+        <div style="background:var(--navy-mid);border:1px solid var(--slate);border-top:3px solid #E63946;padding:18px;">
+          <div style="font-size:1.6rem;margin-bottom:8px;">👨‍👩‍👦</div>
+          <div style="font-family:'Barlow Condensed',sans-serif;font-size:0.95rem;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:#E63946;margin-bottom:10px;">Social & Family Context</div>
+          <ul style="list-style:none;display:flex;flex-direction:column;gap:5px;">
+            <li style="font-size:0.78rem;color:var(--grey-light);display:flex;gap:6px;"><span style="color:#E63946;">→</span>Family: support system or pressure source?</li>
+            <li style="font-size:0.78rem;color:var(--grey-light);display:flex;gap:6px;"><span style="color:#E63946;">→</span>Religion, traditions, cultural adaptation to Indonesia</li>
+            <li style="font-size:0.78rem;color:var(--grey-light);display:flex;gap:6px;"><span style="color:#E63946;">→</span>References: reveal red flags before signing</li>
+            <li style="font-size:0.78rem;color:var(--grey-light);display:flex;gap:6px;"><span style="color:#E63946;">→</span>Body language, leadership, confidence under pressure</li>
+            <li style="font-size:0.78rem;color:var(--grey-light);display:flex;gap:6px;"><span style="color:#E63946;">→</span>Peak AI: cognitive assessment tool — emerging, worth monitoring</li>
+          </ul>
+        </div>
+
+        <div style="background:var(--navy-mid);border:1px solid var(--slate);border-top:3px solid #E63946;padding:18px;">
+          <div style="font-size:1.6rem;margin-bottom:8px;">💰</div>
+          <div style="font-family:'Barlow Condensed',sans-serif;font-size:0.95rem;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:#E63946;margin-bottom:10px;">Financial Overview</div>
+          <ul style="list-style:none;display:flex;flex-direction:column;gap:5px;">
+            <li style="font-size:0.78rem;color:var(--grey-light);display:flex;gap:6px;"><span style="color:#E63946;">→</span>Keep / Sell / Loan / Develop long-term? Define ROI</li>
+            <li style="font-size:0.78rem;color:var(--grey-light);display:flex;gap:6px;"><span style="color:#E63946;">→</span>Salary requested by agent (often via WhatsApp)</li>
+            <li style="font-size:0.78rem;color:var(--grey-light);display:flex;gap:6px;"><span style="color:#E63946;">→</span>Transfer fee + bonus structure + signing fee</li>
+            <li style="font-size:0.78rem;color:var(--grey-light);display:flex;gap:6px;"><span style="color:#E63946;">→</span>TransferRoom alerts: buy-out price notifications from agents</li>
+            <li style="font-size:0.78rem;color:var(--grey-light);display:flex;gap:6px;"><span style="color:#E63946;">→</span>Libro de Pases: lower division contract & registration intel</li>
+          </ul>
+        </div>
+
+        <div style="background:linear-gradient(135deg,rgba(200,16,46,0.15),rgba(230,57,70,0.1));border:1px solid rgba(200,16,46,0.4);border-top:3px solid var(--gold);padding:18px;">
+          <div style="font-size:1.6rem;margin-bottom:8px;">✅</div>
+          <div style="font-family:'Barlow Condensed',sans-serif;font-size:0.95rem;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:var(--gold);margin-bottom:10px;">Final Recommendation</div>
+          <ul style="list-style:none;display:flex;flex-direction:column;gap:5px;">
+            <li style="font-size:0.78rem;color:var(--grey-light);display:flex;gap:6px;"><span style="color:var(--gold);">→</span>Ranked shortlist ready for negotiation</li>
+            <li style="font-size:0.78rem;color:var(--grey-light);display:flex;gap:6px;"><span style="color:var(--gold);">→</span>Zoom calls or city visits — assess attitude, confidence, social skills</li>
+            <li style="font-size:0.78rem;color:var(--grey-light);display:flex;gap:6px;"><span style="color:var(--gold);">→</span>Detailed options with clear Do's and Do Nots per candidate</li>
+            <li style="font-size:0.78rem;color:var(--grey-light);display:flex;gap:6px;"><span style="color:var(--gold);">→</span>Feed final context back into player report before decision</li>
+            <li style="font-size:0.78rem;color:var(--grey-light);display:flex;gap:6px;"><span style="color:var(--gold);">→</span>Every signing justified: objective + subjective evidence combined</li>
+          </ul>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- FOOTER NOTE -->
+    <div style="background:var(--navy-mid);border:1px solid var(--slate);border-left:4px solid var(--gold);padding:16px 20px;font-size:0.82rem;color:var(--grey-light);line-height:1.6;font-style:italic;">
+      <strong style="color:#fff;font-style:normal;">Key principle:</strong> The best way to use Big Data in scouting is to add context to it. You can have algorithms and formulas, but data can always be a bias — that's where the challenge is. There is no winning formula. Success relies on hard work, thorough evaluation, continuously refining methods, adapting targets, benchmarking, and anticipating scenarios.
+      <span style="display:block;margin-top:6px;color:rgba(255,255,255,0.4);font-style:normal;font-size:0.75rem;">— Luis Fernando Espejo · Americas Scout Methodology</span>
+    </div>
+
+  </div>
+
+    <!-- TAB 5: METHODOLOGY -->
+  <div id="tab-methodology" class="tab-panel">
+
+    <!-- PRIORITY ALERT: INDONESIA TRIP -->
+    <div style="background:linear-gradient(135deg,#1a2a0a,#2a4a0f);border:1px solid #4CAF50;border-left:5px solid #4CAF50;padding:24px 28px;margin-bottom:28px;border-radius:4px;position:relative;overflow:hidden;">
+      <div style="position:absolute;top:-20px;right:-20px;width:120px;height:120px;background:radial-gradient(circle,rgba(76,175,80,0.1) 0%,transparent 70%);border-radius:50%;"></div>
+      <div style="font-family:'Barlow Condensed',sans-serif;font-size:0.72rem;letter-spacing:3px;text-transform:uppercase;color:#4CAF50;margin-bottom:6px;">&#9888; Priority Action</div>
+      <div style="font-family:'Barlow Condensed',sans-serif;font-size:1.5rem;font-weight:900;text-transform:uppercase;letter-spacing:1px;color:#fff;margin-bottom:10px;">Indonesia Field Trip — Non-Negotiable</div>
+      <div style="font-size:0.88rem;color:rgba(255,255,255,0.85);line-height:1.75;max-width:860px;">
+        Before any player proposal is finalized, <strong style="color:#fff;">a visit to Indonesia is essential</strong>. Remote scouting and data analysis can only go so far.
+        To recruit accurately for Garudayaksa FC, the scout must <strong style="color:#fff;">experience the Liga 1 environment firsthand</strong> — understanding the pace of play,
+        physical demands, climate conditions, tactical tendencies of opponents, referee standards, and pitch quality.
+        <br><br>
+        This trip serves two purposes: <strong style="color:#fff;">(1) assess the real challenges</strong> a foreign Americas player will face on arrival —
+        adaptation speed, language barriers in the dressing room, lifestyle adjustment —
+        and <strong style="color:#fff;">(2) identify the specific gaps in the squad</strong> that Americas recruitment can realistically fill.
+        Any player profile built without this context risks being built on assumptions, not evidence.
+      </div>
+      <div style="display:flex;gap:12px;margin-top:16px;flex-wrap:wrap;">
+        <div style="background:rgba(76,175,80,0.15);border:1px solid rgba(76,175,80,0.4);padding:8px 16px;border-radius:2px;">
+          <div style="font-size:0.65rem;color:#4CAF50;letter-spacing:2px;text-transform:uppercase;">Objective 1</div>
+          <div style="font-size:0.82rem;color:#fff;font-weight:600;margin-top:2px;">Understand Liga 1 game demands & tempo</div>
+        </div>
+        <div style="background:rgba(76,175,80,0.15);border:1px solid rgba(76,175,80,0.4);padding:8px 16px;border-radius:2px;">
+          <div style="font-size:0.65rem;color:#4CAF50;letter-spacing:2px;text-transform:uppercase;">Objective 2</div>
+          <div style="font-size:0.82rem;color:#fff;font-weight:600;margin-top:2px;">Map squad gaps & positional needs live</div>
+        </div>
+        <div style="background:rgba(76,175,80,0.15);border:1px solid rgba(76,175,80,0.4);padding:8px 16px;border-radius:2px;">
+          <div style="font-size:0.65rem;color:#4CAF50;letter-spacing:2px;text-transform:uppercase;">Objective 3</div>
+          <div style="font-size:0.82rem;color:#fff;font-weight:600;margin-top:2px;">Assess adaptation challenges for foreign players</div>
+        </div>
+        <div style="background:rgba(76,175,80,0.15);border:1px solid rgba(76,175,80,0.4);padding:8px 16px;border-radius:2px;">
+          <div style="font-size:0.65rem;color:#4CAF50;letter-spacing:2px;text-transform:uppercase;">Objective 4</div>
+          <div style="font-size:0.82rem;color:#fff;font-weight:600;margin-top:2px;">Build profiles benchmarked to real Liga 1 standard</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ATTRIBUTES PER POSITION -->
+    <div class="section-label">
+      <div class="bar"></div>
+      <h2>Attributes Per Position</h2>
+      <span>Luis Espejo Methodology Proposal — use to assess & cross-reference</span>
+    </div>
+
+    <div class="context-box" style="border-left-color:var(--gold);margin-bottom:24px;">
+      <div class="title" style="color:var(--gold);">Cross-Reference Principle</div>
+      Every player assessment must combine <strong>at least two independent sources</strong>: data platform (FBref / Sofascore / Wyscout) + video analysis, 
+      ideally supplemented by a live observation or trusted reference. 
+      A strong data profile that does not hold up on video is not a recommendation. A strong video impression without data support requires further investigation before proceeding.
+      <strong> Consistency over 8-week windows is more valuable than single-game peaks.</strong>
+    </div>
+
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:32px;" id="positionAttrs"></div>
+
+    </div>
+  </div>
+
+</div>
+
+<!-- FOOTER -->
+<div class="page-footer">
+  <span>The Americas Scout Intelligence Report · Garudayaksa FC · Liga 1 Indonesia</span>
+  <span>Luis Fernando Espejo · May 2026 · Confidential</span>
+</div>
+
+<script>
+// ─── DATA ──────────────────────────────────────────────────────────────
+const leagueData = [
+  { name: 'J-League (Japan)', players: 28, color: '#E63946' },
+  { name: 'K-League (Korea)', players: 19, color: '#C8102E' },
+  { name: 'Liga 1 Indonesia', players: 17, color: '#E07B39' },
+  { name: 'Thai League 1', players: 14, color: '#F4C430' },
+  { name: 'A-League (Australia)', players: 11, color: '#3A86FF' },
+  { name: 'Chinese Super League', players: 9, color: '#9B59B6' },
+  { name: 'Malaysian Super League', players: 8, color: '#27AE60' },
+  { name: 'Garudayaksa FC (Liga 1)', players: 6, color: '#E84060' },
+  { name: 'Singapore Premier', players: 5, color: '#F39C12' },
+  { name: 'Other Asia/Oceania', players: 10, color: '#666' },
+];
+
+const nationalityData = [
+  { country: 'Brazil 🇧🇷', players: 52, success: 68, avgMin: 1420, avgFee: 55, avgAge: 24.1 },
+  { country: 'Argentina 🇦🇷', players: 23, success: 65, avgMin: 1180, avgFee: 45, avgAge: 25.3 },
+  { country: 'Colombia 🇨🇴', players: 15, success: 60, avgMin: 980, avgFee: 30, avgAge: 24.6 },
+  { country: 'Uruguay 🇺🇾', players: 11, success: 72, avgMin: 1350, avgFee: 25, avgAge: 26.2 },
+  { country: 'Mexico 🇲🇽', players: 8, success: 55, avgMin: 890, avgFee: 40, avgAge: 23.8 },
+  { country: 'Ecuador 🇪🇨', players: 6, success: 67, avgMin: 1100, avgFee: 20, avgAge: 23.0 },
+  { country: 'Chile 🇨🇱', players: 5, success: 50, avgMin: 820, avgFee: 15, avgAge: 26.5 },
+  { country: 'Paraguay 🇵🇾', players: 4, success: 58, avgMin: 950, avgFee: 18, avgAge: 25.1 },
+  { country: 'Venezuela 🇻🇪', players: 2, success: 45, avgMin: 680, avgFee: 10, avgAge: 24.0 },
+  { country: 'Peru 🇵🇪', players: 1, success: 40, avgMin: 450, avgFee: 12, avgAge: 27.0 },
+];
+
+const ageGroupData = [
+  { group: '17-19', count: 8 },
+  { group: '20-21', count: 16 },
+  { group: '22-23', count: 29 },
+  { group: '24-25', count: 35 },
+  { group: '26-27', count: 22 },
+  { group: '28-29', count: 12 },
+  { group: '30+', count: 5 },
+];
+
+const avgAgeLeague = [
+  { name: 'J-League (Japan)', age: 24.2 },
+  { name: 'K-League (Korea)', age: 25.1 },
+  { name: 'Liga 1 Indonesia', age: 25.6 },
+  { name: 'Thai League 1', age: 24.8 },
+  { name: 'A-League (AU)', age: 26.3 },
+  { name: 'Malaysian SL', age: 25.9 },
+];
+
+const firstTeamPlayers = [];
+
+const youngPlayers = [];
+
+// ─── RENDER FUNCTIONS ──────────────────────────────────────────────────
+
+function renderBarChart(containerId, data, maxVal, showCount = true) {
+  const container = document.getElementById(containerId);
+  if (!container) return;
+  container.innerHTML = '';
+  data.forEach(d => {
+    const pct = (d.players || d.count || d.avg || d.val || d.age * 4 || 0) / (maxVal || 1) * 100;
+    const displayVal = d.players ?? d.count ?? d.avg ?? d.val ?? d.age ?? '';
+    const color = d.color || '#C8102E';
+    container.innerHTML += `
+      <div class="bar-row">
+        <div class="bar-label">${d.name || d.country || d.group || ''}</div>
+        <div class="bar-track">
+          <div class="bar-fill" style="width:${Math.min(pct,100)}%;background:${color}">
+            <span></span>
+          </div>
+        </div>
+        ${showCount ? `<div class="bar-count">${displayVal}${d.unit||''}</div>` : ''}
+      </div>`;
+  });
+}
+
+function renderDonut() {
+  const canvas = document.getElementById('donutChart');
+  const ctx = canvas.getContext('2d');
+  const total = nationalityData.reduce((s, d) => s + d.players, 0);
+  const colors = ['#C8102E','#E63946','#E07B39','#F4C430','#27AE60','#3A86FF','#9B59B6','#1ABC9C','#E67E22','#7F8C8D'];
+  let start = -Math.PI / 2;
+  const cx = 80, cy = 80, r = 72, ir = 45;
+  nationalityData.forEach((d, i) => {
+    const angle = (d.players / total) * 2 * Math.PI;
+    ctx.beginPath();
+    ctx.moveTo(cx, cy);
+    ctx.arc(cx, cy, r, start, start + angle);
+    ctx.closePath();
+    ctx.fillStyle = colors[i];
+    ctx.fill();
+    start += angle;
+  });
+  // Inner circle (donut hole)
+  ctx.beginPath();
+  ctx.arc(cx, cy, ir, 0, 2 * Math.PI);
+  ctx.fillStyle = '#121828';
+  ctx.fill();
+  // Center text
+  ctx.fillStyle = '#F8F9FA';
+  ctx.font = 'bold 22px Barlow Condensed, sans-serif';
+  ctx.textAlign = 'center';
+  ctx.fillText(total, cx, cy + 4);
+  ctx.font = '10px Barlow, sans-serif';
+  ctx.fillStyle = '#8A93A8';
+  ctx.fillText('TOTAL', cx, cy + 16);
+
+  // Legend
+  const legend = document.getElementById('donutLegend');
+  legend.innerHTML = nationalityData.slice(0, 8).map((d, i) => `
+    <div class="legend-item">
+      <div class="legend-dot" style="background:${colors[i]}"></div>
+      <span>${d.country.replace(/ 🇧🇷|🇦🇷|🇨🇴|🇺🇾|🇲🇽|🇪🇨|🇨🇱|🇵🇾|🇻🇪|🇵🇪/g,'').trim()}</span>
+      <span class="legend-val">${d.players}</span>
+    </div>`).join('');
+}
+
+function renderAgeBar() {
+  const canvas = document.getElementById('ageBarChart');
+  if (!canvas) return;
+  const ctx = canvas.getContext('2d');
+  const maxVal = Math.max(...ageGroupData.map(d => d.count));
+  const barW = 55, gap = 10, padL = 40, padB = 40, padT = 20;
+  const h = canvas.height - padB - padT;
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+  ageGroupData.forEach((d, i) => {
+    const x = padL + i * (barW + gap);
+    const barH = (d.count / maxVal) * h;
+    const y = padT + (h - barH);
+    const isBest = d.group === '22-23' || d.group === '24-25';
+    ctx.fillStyle = isBest ? '#C8102E' : 'rgba(44,53,85,0.8)';
+    ctx.fillRect(x, y, barW, barH);
+    ctx.fillStyle = '#F8F9FA';
+    ctx.font = 'bold 13px Barlow Condensed, sans-serif';
+    ctx.textAlign = 'center';
+    ctx.fillText(d.count, x + barW / 2, y - 6);
+    ctx.fillStyle = '#8A93A8';
+    ctx.font = '11px Barlow, sans-serif';
+    ctx.fillText(d.group, x + barW / 2, canvas.height - 10);
+    if (isBest) {
+      ctx.fillStyle = 'rgba(200,16,46,0.15)';
+      ctx.fillRect(x - 2, padT, barW + 4, h);
+    }
+  });
+  // Label
+  ctx.fillStyle = '#C8102E';
+  ctx.font = '10px Barlow, sans-serif';
+  ctx.textAlign = 'left';
+  ctx.fillText('▲ Target window', padL + 2 * (barW + gap), padT - 6);
+}
+
+function renderCountryTable() {
+  const t = document.getElementById('countryTable');
+  if (!t) return;
+  t.innerHTML = `<thead><tr>
+    <th>Country</th><th>Players in Asia/Oceania</th><th>Avg Age</th>
+    <th>Avg Min Played</th><th>Success Rate</th><th>Avg Transfer Fee</th><th>Scout Rating</th>
+  </tr></thead><tbody>` +
+  nationalityData.map(d => {
+    const rating = d.success >= 65 ? '<span class="pill pill-green">High</span>' :
+                   d.success >= 55 ? '<span class="pill pill-orange">Medium</span>' :
+                   '<span class="pill pill-red">Low</span>';
+    return `<tr>
+      <td class="player-name">${d.country}</td>
+      <td>${d.players}</td>
+      <td>${d.avgAge}</td>
+      <td>${d.avgMin.toLocaleString()}</td>
+      <td>${d.success}%</td>
+      <td>€${d.avgFee}k <span style="color:var(--grey);font-size:0.75rem">est.</span></td>
+      <td>${rating}</td>
+    </tr>`;
+  }).join('') + '</tbody>';
+}
+
+function renderAgeTable() {
+  const t = document.getElementById('ageTable');
+  if (!t) return;
+  t.innerHTML = `<thead><tr>
+    <th>Age Group</th><th>Players</th><th>% of Total</th><th>Avg Minutes</th><th>Recommendation</th>
+  </tr></thead><tbody>` +
+  [
+    ['17-19', 8, 6.3, 620, 'Development only', 'pill-red'],
+    ['20-21', 16, 12.6, 880, 'High potential — monitor', 'pill-orange'],
+    ['22-23', 29, 22.8, 1250, 'Strong target window', 'pill-green'],
+    ['24-25', 35, 27.6, 1420, '✦ Prime target window', 'pill-green'],
+    ['26-27', 22, 17.3, 1380, 'Experienced — good value', 'pill-blue'],
+    ['28-29', 12, 9.4, 1100, 'With caution', 'pill-orange'],
+    ['30+', 5, 3.9, 780, 'Avoid unless exceptional', 'pill-red'],
+  ].map(r => `<tr>
+    <td class="player-name">${r[0]}</td>
+    <td>${r[1]}</td>
+    <td>${r[2]}%</td>
+    <td>${r[3].toLocaleString()}</td>
+    <td><span class="pill ${r[5]}">${r[4]}</span></td>
+  </tr>`).join('') + '</tbody>';
+}
+
+function renderPlayerCards(players, containerId) {
+  const container = document.getElementById(containerId);
+  if (!container) return;
+  container.innerHTML = players.map(p => `
+    <div class="player-card">
+      <div class="player-card-header">
+        <div>
+          <div class="name">${p.nat} ${p.name}</div>
+          <div class="pos-club">${p.pos} · ${p.club}</div>
+        </div>
+        <span class="pill pill-gold">${p.age} y.o.</span>
+      </div>
+      <div class="player-card-body">
+        <div class="player-meta">
+          <div class="meta-item"><div class="meta-label">Height</div><div class="meta-val">${p.height}</div></div>
+          <div class="meta-item"><div class="meta-label">Transfer Fee</div><div class="meta-val" style="color:var(--gold-light)">${p.fee}</div></div>
+          <div class="meta-item"><div class="meta-label">Salary Est.</div><div class="meta-val">${p.salary}</div></div>
+          <div class="meta-item"><div class="meta-label">Contract</div><div class="meta-val">${p.contract}</div></div>
+        </div>
+        <div class="player-attrs">
+          ${p.attrs.map(a => `
+            <div class="attr-row">
+              <div class="attr-label">${a.name}</div>
+              <div class="attr-bar"><div class="attr-fill" style="width:${a.val}%;background:${a.color}"></div></div>
+              <div class="attr-score">${a.val}</div>
+            </div>`).join('')}
+        </div>
+        <div class="player-notes">${p.note}</div>
+        <div style="margin-top:10px;font-size:0.75rem;color:var(--grey);">📞 ${p.agent}</div>
+      </div>
+    </div>`).join('');
+}
+
+function renderPositionAttrs() {
+  const positions = [
+    {
+      pos: 'GK', color: '#3498DB',
+      attrs: ['Ball distribution (both feet)', 'Long ball accuracy', 'Commanding presence & communication', 'Dominant in aerial duels', '1v1 composure', 'Sweeper-keeper reading'],
+      key: 'Must mirror Flekken model — ball-playing GK who breaks pressure and finds 3rd man'
+    },
+    {
+      pos: 'CB', color: '#E63946',
+      attrs: ['Defensive duel win rate', 'Max speed & recovery pace', 'Long ball completion %', 'Aerial duel dominance', 'Game reading & anticipation', 'Composure under pressure'],
+      key: 'Colombian CB pace profile or Argentine positional intelligence — must defend high line'
+    },
+    {
+      pos: 'Full Back', color: '#9B59B6',
+      attrs: ['Cross delivery quality', 'Defensive cross prevention', 'Ground duel success', 'Sprint recovery (WOTB)', 'Link-up with winger (synergy)', 'Dribble to open space'],
+      key: 'Attack-minded but defensively disciplined — synergy with winger is critical'
+    },
+    {
+      pos: 'DM / CM', color: '#27AE60',
+      attrs: ['Pass completion under pressure', 'Ball progression (carries)', 'Positional scanning frequency', 'Second ball recovery', 'Weak foot competence', 'Set piece delivery'],
+      key: 'Cognitive skill — must read spaces, anticipate, and provide defensive balance simultaneously'
+    },
+    {
+      pos: 'Winger', color: '#F4C430',
+      attrs: ['Successful dribbles / 90', 'Crosses into danger zone', 'Shots on target / 90', 'Fouls won / 90', 'Pressing intensity (PPDA)', 'Off-ball run frequency'],
+      key: 'Caribbean / Argentine / Venezuelan profiles — pace + unpredictability + set piece delivery'
+    },
+    {
+      pos: 'Striker', color: '#E07B39',
+      attrs: ['xG conversion rate', 'Touches in opponent box', 'Hold-up retention %', 'Aerial duel win %', 'Off-ball movement (drops + runs behind)', 'Individual pressure recoveries'],
+      key: 'Tenacious, tricky, composure in the box — must be first line of press without the ball'
+    },
+  ];
+  const container = document.getElementById('positionAttrs');
+  if (!container) return;
+  container.innerHTML = positions.map(p => `
+    <div style="background:var(--navy-mid);border:1px solid var(--slate);border-top:3px solid ${p.color};padding:20px;border-radius:2px;">
+      <div style="font-family:'Barlow Condensed',sans-serif;font-size:1.2rem;font-weight:900;text-transform:uppercase;letter-spacing:2px;color:${p.color};margin-bottom:14px;">${p.pos}</div>
+      <ul style="list-style:none;display:flex;flex-direction:column;gap:7px;margin-bottom:14px;">
+        ${p.attrs.map(a => `<li style="font-size:0.8rem;color:var(--grey-light);display:flex;gap:8px;align-items:flex-start;">
+          <span style="color:${p.color};flex-shrink:0;margin-top:1px;">&#10003;</span>${a}</li>`).join('')}
+      </ul>
+      <div style="background:rgba(0,0,0,0.3);border-left:3px solid ${p.color};padding:8px 10px;font-size:0.75rem;color:rgba(255,255,255,0.65);line-height:1.5;font-style:italic;">${p.key}</div>
+    </div>`).join('');
+}
+
+
+// ─── TAB SWITCHING ────────────────────────────────────────────────────
+function switchTab(id) {
+  document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.nav-tab').forEach(t => t.classList.remove('active'));
+  document.getElementById('tab-' + id).classList.add('active');
+  event.target.classList.add('active');
+
+  if (id === 'age') { setTimeout(renderAgeBar, 50); renderAgeTable(); }
+  if (id === 'leagues') {
+    renderBarChart('byNationality',
+      nationalityData.map(d => ({ name: d.country.replace(/ 🇧🇷|🇦🇷|🇨🇴|🇺🇾|🇲🇽|🇪🇨|🇨🇱|🇵🇾|🇻🇪|🇵🇪/g,'').trim(), players: d.players, color: '#C8102E' })), 55);
+    renderBarChart('byMinutes',
+      nationalityData.map(d => ({ name: d.country.replace(/ 🇧🇷|🇦🇷|🇨🇴|🇺🇾|🇲🇽|🇪🇨|🇨🇱|🇵🇾|🇻🇪|🇵🇪/g,'').trim(), players: d.avgMin, color: '#27AE60' })), 1600);
+    renderBarChart('bySuccess',
+      nationalityData.map(d => ({ name: d.country.replace(/ 🇧🇷|🇦🇷|🇨🇴|🇺🇾|🇲🇽|🇪🇨|🇨🇱|🇵🇾|🇻🇪|🇵🇪/g,'').trim(), players: d.success, color: '#E07B39' })), 100);
+    renderCountryTable();
+  }
+  if (id === 'methodology') { renderPositionAttrs(); }
+}
+
+// ─── INIT ─────────────────────────────────────────────────────────────
+renderBarChart('byLeague', leagueData, 30);
+
+// ─── INDONESIA BREAKDOWN ──────────────────────────────────────────────
+const indonesiaClubData = [
+  { name: 'Borneo FC', players: 4, color: '#E63946', nat: '🇧🇷🇨🇴🇧🇷🇧🇷' },
+  { name: 'Persib Bandung', players: 3, color: '#3498DB', nat: '🇧🇷🇦🇷🇨🇴' },
+  { name: 'Persija Jakarta', players: 3, color: '#E07B39', nat: '🇧🇷🇧🇷🇦🇷' },
+  { name: 'Arema FC', players: 2, color: '#27AE60', nat: '🇧🇷🇺🇾' },
+  { name: 'Bali United', players: 2, color: '#F4C430', nat: '🇧🇷🇦🇷' },
+  { name: 'PSM Makassar', players: 2, color: '#9B59B6', nat: '🇧🇷🇨🇴' },
+  { name: 'Persebaya', players: 2, color: '#1ABC9C', nat: '🇧🇷🇦🇷' },
+  { name: 'PSBS Biak', players: 2, color: '#E74C3C', nat: '🇧🇷🇧🇷' },
+  { name: 'Garudayaksa FC', players: 1, color: '#D4AC0D', nat: '—' },
+  { name: 'Other Liga 1/2', players: 2, color: '#666', nat: '—' },
+];
+
+const indonesiaPlayerData = [
+  { player: 'Douglas Coutinho', club: 'Borneo FC', nat: '🇧🇷', pos: 'AM', age: 27, fee: '€35k', salary: '$2,200/mo', source: 'ANTARA (Jul 2025)' },
+  { player: 'Juan Felipe Villa', club: 'Borneo FC', nat: '🇨🇴', pos: 'FW', age: 25, fee: '€20k', salary: '$1,800/mo', source: 'ANTARA (Jul 2025)' },
+  { player: 'Maicon Souza', club: 'Borneo FC', nat: '🇧🇷', pos: 'MF', age: 26, fee: '€25k', salary: '$2,000/mo', source: 'ANTARA (Jul 2025)' },
+  { player: 'Joel Vinicius', club: 'Borneo FC', nat: '🇧🇷', pos: 'FW', age: 24, fee: '€30k', salary: '$1,900/mo', source: 'ANTARA (Jul 2025)' },
+  { player: 'Lucas Rian', club: 'Arema FC', nat: '🇧🇷', pos: 'FW', age: 23, fee: '€20k', salary: '$1,600/mo', source: 'Tribunnews (Dec 2025)' },
+  { player: 'Gabriel Poveda', club: 'Persija Jakarta', nat: '🇨🇴', pos: 'FW', age: 27, fee: 'Unknown', salary: 'Unknown', source: 'Tribunnews (Nov 2025)' },
+  { player: 'Kelvin Mateus', club: 'Arema FC', nat: '🇧🇷', pos: 'WG', age: 25, fee: '€18k', salary: '$1,500/mo', source: 'Tribunnews (2025)' },
+  { player: 'Various (Persib)', club: 'Persib Bandung', nat: '🇧🇷🇦🇷', pos: 'Mixed', age: 25, fee: 'Est. €30k', salary: '$2,000/mo', source: 'Transfermarkt' },
+];
+
+function renderIndonesiaBreakdown() {
+  renderBarChart('indonesiaBreakdown', indonesiaClubData, 5);
+
+  const t = document.getElementById('indonesiaTable');
+  if (!t) return;
+  t.innerHTML = `<thead><tr>
+    <th>Player</th><th>Club</th><th>Nat.</th><th>Pos.</th><th>Age</th>
+    <th>Transfer Fee</th><th>Salary Est.</th><th>Source</th>
+  </tr></thead><tbody>` +
+  indonesiaPlayerData.map(p => `<tr>
+    <td class="player-name">${p.player}</td>
+    <td>${p.club}</td>
+    <td style="font-size:1.1rem">${p.nat}</td>
+    <td><span class="pill pill-blue">${p.pos}</span></td>
+    <td>${p.age}</td>
+    <td style="color:var(--gold-light)">${p.fee}</td>
+    <td>${p.salary}</td>
+    <td style="font-size:0.72rem;color:var(--grey)">${p.source}</td>
+  </tr>`).join('') + `
+  <tr style="background:rgba(212,172,13,0.05);border-top:2px solid rgba(212,172,13,0.3);">
+    <td class="player-name" style="color:var(--gold-light)">Garudayaksa FC</td>
+    <td style="color:var(--gold-light)">Liga 1 2025/26</td>
+    <td>—</td>
+    <td><span class="pill pill-gold">TARGET</span></td>
+    <td>19–24</td>
+    <td style="color:var(--gold-light)">€15–50k</td>
+    <td>$1,500–2,500/mo</td>
+    <td style="font-size:0.72rem;color:var(--grey)">Scout Recommendation</td>
+  </tr>` + '</tbody>';
+}
+
+renderIndonesiaBreakdown();
+renderDonut();
+renderPlayerCards(firstTeamPlayers, 'firstTeamCards');
+renderPlayerCards(youngPlayers, 'youngCards');
+renderBarChart('avgAgeByLeague',
+  avgAgeLeague.map(d => ({ name: d.name, players: d.age, color: '#3A86FF', unit: 'y' })), 30);
+</script>
+</body>
+</html>
