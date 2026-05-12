@@ -584,6 +584,7 @@
   <button class="nav-tab" onclick="switchTab('leagues')">By League / Country</button>
   <button class="nav-tab" onclick="switchTab('age')">Age Analysis</button>
   <button class="nav-tab" onclick="switchTab('scouting-methodology')">Scouting Methodology</button>
+    <button class="nav-tab" onclick="switchTab('players')">Player Targets</button>
 </div>
 
 <!-- CONTENT -->
@@ -814,6 +815,22 @@
     <div class="chart-box">
       <table class="data-table" id="ageTable"></table>
     </div>
+  </div>
+
+  <!-- PLAYERS TAB -->
+  <div id="tab-players" class="tab-panel">
+    <div class="section-label">
+      <div class="bar"></div>
+      <h2>First Team Targets</h2>
+      <span>Ready to sign · Liga 1 Indonesia · 2025/26</span>
+    </div>
+    <div class="player-grid" id="firstTeamCards"></div>
+    <div class="section-label" style="margin-top:32px;">
+      <div class="bar"></div>
+      <h2>Young Targets</h2>
+      <span>Development profiles · High upside · Low cost</span>
+    </div>
+    <div class="player-grid" id="youngCards"></div>
   </div>
 
   <!-- SCOUTING METHODOLOGY TAB -->
@@ -1499,6 +1516,7 @@ function switchTab(id) {
     renderCountryTable();
   }
   if (id === 'scouting-methodology') { renderPositionAttrs(); }
+    if (id === 'players') { renderPlayerCards(firstTeamPlayers, 'firstTeamCards'); renderPlayerCards(youngPlayers, 'youngCards'); }
 }
 
 // âââ INIT âââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââ
